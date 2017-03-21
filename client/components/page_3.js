@@ -50,8 +50,8 @@ class Page3 extends Component {
       </div>
 
       <div className="">
-        <div className="">
-          <div className="">
+        <div className="field">
+          <div className="ui checkbox">
             <label>Are you comfortable being an early adopter of technology?</label>
             <Field name="earlyAdopter" component="input" type='checkbox'/>
           </div>

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import { Link } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
+//const { DOM: { input } } = React;
+import validate from '../reducers/validate';
 
 import StateSelect from './state_select';
 
@@ -9,7 +11,9 @@ import StateSelect from './state_select';
 class Page1 extends Component {
 
   render() {
+    //const { fields: { fname }, errors } = this.props
     return (
+      <form>
       <div className="ui form container">
         <h2 className="ui header center aligned">Real Estate Agent Application</h2>
         <h4 className="ui dividing header center aligned">Thank you for applying to be a part of the revolution of real estate. Please complete the following pages as thoroughly as possible.</h4>
@@ -17,7 +21,7 @@ class Page1 extends Component {
           <div className="two fields">
             <div className="field">
               <label>First Name</label>
-              <Field name="fname" component="input" type="text" placeholder="First Name"  />
+              <Field name="fname" component='input' type="text" placeholder="First Name" />
             </div>
             <div className="field" >
               <label>Last Name</label>
@@ -59,18 +63,22 @@ class Page1 extends Component {
           </div>
 
           <Link to="/page2">
-          <Button color="green" floated="right">Next</Button>
+          <Button color="green" floated="right" className=''>Next</Button>
           </Link>
 
         </div>
       </div>
+      </form>
     );
   }
 }
 
+
+
 const FormPage1 = reduxForm({
   form: 'Application',
   fields: ['fname', 'lname', 'email', 'phone', 'address', 'city', 'usState', 'zip'],
+  validate,
   destroyOnUnmount: false
 })(Page1)
 

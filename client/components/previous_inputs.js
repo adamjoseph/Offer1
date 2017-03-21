@@ -18,11 +18,11 @@ let ShowPreviousInputs = (props) => {
 
             <div className="column">
               <div className="ui segment">
-                <p>Name: {fname} {lname}</p>
-                <p>Address: {address}</p>
+                <p><strong>Name:</strong> {fname} {lname}</p>
+                <p><strong>Address:</strong> {address}</p>
                 <p>{city}, {usState} {zip}</p>
-                <p>Phone: {phone}</p>
-                <p>Email: {email}</p>
+                <p><strong>Phone:</strong> {phone}</p>
+                <p><strong>Email:</strong> {email}</p>
 
                 <Link to="/">Edit</Link>
               </div>
@@ -30,9 +30,11 @@ let ShowPreviousInputs = (props) => {
 
             <div className="column">
               <div className="ui segment">
-                <p>Personal DRE #: {personalNum}</p>
-                <p>Brokerage Name: {brokerageName}</p>
-                <p>Brokerage DRE #: {brokerageNum}</p>
+                <p><strong>Personal DRE #:</strong> {personalNum}</p>
+                <p><strong>Brokerage Name:</strong> {brokerageName}</p>
+                <p><strong>Brokerage DRE #:</strong> {brokerageNum}</p>
+                <p></p>
+                <p></p>
                 <Link to="/page2">Edit</Link>
               </div>
             </div>

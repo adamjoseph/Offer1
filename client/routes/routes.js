@@ -7,6 +7,7 @@ import FormPage2 from '../components/page_2';
 import FormPage3 from '../components/page_3';
 import FormPage4 from '../components/page_4';
 import ThankYou from '../components/thank_you';
+import AdminPage from '../components/admin_page';
 
 export default (
   <Route path="/" component={App} >
@@ -15,16 +16,6 @@ export default (
     <Route path="page3" component={FormPage3} />
     <Route path="page4" component={FormPage4} />
     <Route path="/thankyou" component={ThankYou} />
+    <Route path="/admin" component={AdminPage} />
   </Route>
 );
-
-// export default {
-//   path: '/',
-//   component: require('../components/app').default,
-//   indexRoute: require('../components/page_1'),
-//   childRoutes: [
-//     ...require('../components/page_2').default,
-//     ...require('../components/page_3').default,
-//     ...require('../components/page_4').default
-//   ]
-// };

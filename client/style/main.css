@@ -1,1 +1,10 @@
 /* CSS declarations go here */
+.agent-list {
+  float: right;
+  width: 28%;
+}
+
+.agent-inspect {
+  
+  width: 35%;
+}

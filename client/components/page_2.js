@@ -5,6 +5,7 @@ import { Field, reduxForm } from 'redux-form';
 
 import StateSelect from './state_select';
 import TeamSelect from './team_select';
+import renderField from './render_field';
 
 
 class Page2 extends Component {
@@ -84,6 +85,7 @@ class Page2 extends Component {
                 component='input'
                 type='number'/>
             </div>
+
 
           <Link to="/page3">
           <Button color="green" floated="right">Next</Button>

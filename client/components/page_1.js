@@ -3,15 +3,24 @@ import { Form, Button } from 'semantic-ui-react';
 import { Link } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
 //const { DOM: { input } } = React;
-import validate from '../reducers/validate';
-
+// import validate from '../reducers/validate';
+//import components
 import StateSelect from './state_select';
+import renderField from './render_field';
+
+const required = value => value ? undefined : 'Required';
+const email = value =>
+  value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
+  'Invalid email address' : undefined
+
+
 
 
 class Page1 extends Component {
 
   render() {
-    //const { fields: { fname }, errors } = this.props
+    //console.log(this.props)
+    const { invalid } = this.props
     return (
       <form>
       <div className="ui form container">
@@ -19,51 +28,51 @@ class Page1 extends Component {
         <h4 className="ui dividing header center aligned">Thank you for applying to be a part of the revolution of real estate. Please complete the following pages as thoroughly as possible.</h4>
         <div className="ui container">
           <div className="two fields">
-            <div className="field">
-              <label>First Name</label>
-              <Field name="fname" component='input' type="text" placeholder="First Name" />
-            </div>
-            <div className="field" >
-              <label>Last Name</label>
-              <Field name="lname" component="input" type="text" placeholder="Last Name" />
-            </div>
+              <Field name="fname" type="text" label="First Name"
+                component={renderField}
+                validate={required}
+                />
+              <Field name="lname" type="text" label="Last Name"
+                component={renderField}
+                validate={required}
+                />
           </div>
-
           <div className="two fields">
-            <div className="field">
-              <label>Email</label>
-              <Field name="email" component="input" type="email" placeholder="Email" />
-            </div>
-            <div className="field" >
-              <label>Cell Phone</label>
-              <Field name="phone" component="input" type="text" placeholder="CellPhone" />
-            </div>
+              <Field name="email" type="email" label="Email"
+                component={renderField}
+                validate=''
+              />
+              <Field name="phone" type="text" label="Cell Phone"
+                component={renderField}
+                validate=''
+               />
           </div>
-
           <div className="two fields">
-            <div className="field">
-              <label>Address</label>
-              <Field name="address" component="input" type="text" placeholder="Address" />
-            </div>
-            <div className="field" >
-              <label>City</label>
-              <Field name="city" component="input" type="text" placeholder="City" />
-            </div>
+              <Field name="address" type="text" label="Address"
+                component={renderField}
+                validate=''
+               />
+              <Field name="city" type="text" label="City"
+                component={renderField}
+                validate=''
+               />
           </div>
-
           <div className="two fields">
             <div className="field">
               <label>State</label>
-              <Field name="usState" component={StateSelect} />
+              <Field name="usState"
+                component={StateSelect}
+                validate=''
+               />
             </div>
-            <div className="field">
-              <label>Zip Code</label>
-              <Field name="zip" component="input" type="number" placeholder="Zip Code" />
-            </div>
+              <Field name="zip" type="number" label="Zip"
+                component={renderField}
+                validate=''
+              />
           </div>
 
           <Link to="/page2">
-          <Button color="green" floated="right" className=''>Next</Button>
+          <Button color="green" floated="right" className={invalid ? 'disabled' : ''}>Next</Button>
           </Link>
 
         </div>
@@ -78,7 +87,6 @@ class Page1 extends Component {
 const FormPage1 = reduxForm({
   form: 'Application',
   fields: ['fname', 'lname', 'email', 'phone', 'address', 'city', 'usState', 'zip'],
-  validate,
   destroyOnUnmount: false
 })(Page1)
 

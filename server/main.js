@@ -1,11 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { Email } from 'meteor/email';
 import { check, Match } from 'meteor/check';
-import { Mongo } from 'meteor/mongo';
 
-//import Agents from '../imports/collections/agents';
 
-Agents = new Mongo.Collection('agents');
+import  { Agents } from '../imports/collections/agents';
+
+
+
 Meteor.startup(() => {
   // code to run on server at startup
   process.env.MAIL_URL =
@@ -38,6 +39,6 @@ Meteor.methods({
     //run any check functions
 
     console.log(agent);
-    Agents.insert({ agent });
+    Agents.insert({ agent, appStatus: 'hold', admin: false });
   }
 });

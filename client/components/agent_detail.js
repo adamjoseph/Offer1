@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const AgentDetail = ({ agent }) => {
-  const { fname, lname, email, } = agent.agent;
+class AgentDetail extends Component {
 
+  render() {
+  const { fname, lname, email, } = this.props.agent.agent
   return (
-    <div className="card">
+    <div className="card" onClick={() => this.props.clickHandler(this.props.agent.agent)}>
       <div className="content">
         {/* Place Image tag here */}
         <div className="header">
@@ -26,6 +27,7 @@ const AgentDetail = ({ agent }) => {
       </div>
     </div>
   );
+  }
 };
 
 export default AgentDetail

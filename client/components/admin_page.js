@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Agents } from '../../imports/collections/agents';
 import { selectAgent } from '../actions/index';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, mapStateToProps, dispatch } from 'redux';
+import { connect } from 'react-redux';
 
 //import components
-import AgentDetail from './agent_detail';
+import AgentList from './agent_list';
+//import AgentDetail from './agent_detail';
 import AgentInspect from './agent_inspect';
 
 
@@ -16,25 +18,18 @@ class AdminPage extends Component {
       <div className="ui container">
         <h1 className="ui header center aligned">Adminstration Home</h1>
         <AgentInspect />
-        <div className="agent-list">
-        <div className="ui cards">
-          {this.props.agents.map(agent =>
-            <AgentDetail key={agent._id}
-              agent={agent}
-              onClick={() => this.props.selectAgent(agent)}
-            />
-          )}
-        </div>
-        </div>
+        <AgentList agents={this.props.agents} />
+
       </div>
     );
   }
 }
 
-function mapDispatchToProps(dispatch) {
+// function mapDispatchToProps(dispatch) {
+//
+//   return bindActionCreators({ selectAgent: selectAgent }, dispatch)
+// }
 
-  return bindActionCreators({ selectAgent: selectAgent }, dispatch)
-}
 
 
 export default createContainer(() => {
@@ -44,3 +39,5 @@ export default createContainer(() => {
   //return an object
   return { agents: Agents.find({}).fetch() };
 }, AdminPage);
+
+//export default connect(mapStateToProps, mapDispatchToProps)(Container);

@@ -16,7 +16,7 @@ class Page4 extends Component {
     console.log(props);
     console.log(props.email);
 
-    //Meteor.call('addAgent', props);
+    Meteor.call('addAgent', props);
 
 
     // Meteor.call('sendEmail',

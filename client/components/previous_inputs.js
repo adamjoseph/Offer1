@@ -9,7 +9,7 @@ import { Link } from 'react-router';
 
 
 let ShowPreviousInputs = (props) => {
-  const { fname, lname, phone, email, personalNum, address, city, usState, zip, brokerageName, brokerageNum } = props
+  const { fname, lname, phone, email, personalNum, address, city, usState, licenseState, zip, brokerageName, brokerageNum } = props
 
     return (
       <div className='' >
@@ -30,12 +30,34 @@ let ShowPreviousInputs = (props) => {
 
             <div className="column">
               <div className="ui segment">
+                <p><strong>License State:</strong> {licenseState}</p>
                 <p><strong>Personal DRE #:</strong> {personalNum}</p>
                 <p><strong>Brokerage Name:</strong> {brokerageName}</p>
                 <p><strong>Brokerage DRE #:</strong> {brokerageNum}</p>
-                <p></p>
-                <p></p>
+                <p><br/></p>
                 <Link to="/page2">Edit</Link>
+              </div>
+            </div>
+
+            <div className="column">
+              <div className="ui segment">
+                {/* <div className="profile-pic">
+                  <Image src="../../Default_Avatar.jpg" size="small" shape="rounded" />
+                </div>
+                <div className="add-pic">
+                  <i className="big add circle icon"></i>
+                  Profile Picture
+                </div> */}
+                <div className="ui card">
+                  <div className="">
+                    <Image className="prof-pic" src="../../Default_Avatar.jpg" />
+                  </div>
+                  <div className="content">
+                    <button className="small ui button">
+                      Add Photo
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -55,9 +77,9 @@ const selector = formValueSelector('Application');
 
 ShowPreviousInputs = connect(
   state => {
-    const { fname, lname, phone, email, personalNum, address, city, usState, zip, brokerageName, brokerageNum } = selector(state, 'fname', 'lname', 'phone', 'email', 'personalNum', 'address', 'city', 'usState', 'zip', 'brokerageName', 'brokerageNum')
+    const { fname, lname, phone, email, personalNum, address, city, usState, licenseState, zip, brokerageName, brokerageNum } = selector(state, 'fname', 'lname', 'phone', 'email', 'personalNum', 'address', 'city', 'usState', 'liceseState', 'zip', 'brokerageName', 'brokerageNum')
     return {
-      fname, lname, phone, email, personalNum, address, city, usState, zip, brokerageName, brokerageNum
+      fname, lname, phone, email, personalNum, address, city, usState, licenseState, zip, brokerageName, brokerageNum
     }
   }
 )(ShowPreviousInputs)

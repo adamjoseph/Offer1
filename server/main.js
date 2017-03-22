@@ -12,9 +12,9 @@ Meteor.startup(() => {
   process.env.MAIL_URL =
   'smtp://postmaster@sandbox7c366020d39945438730120b142279be.mailgun.org:c12d5c0229553d4263e8ddde0a4f7a7a@smtp.mailgun.org:184.173.153.200';
 
-  // Meteor.publish('Agents', function() {
-  //   return Agents.find({});
-  // });
+  Meteor.publish('agents', function() {
+    return Agents.find({});
+  });
 });
 
 
@@ -38,7 +38,19 @@ Meteor.methods({
   'addAgent': function(agent) {
     //run any check functions
 
-    console.log(agent);
+
     Agents.insert({ agent, appStatus: 'hold', admin: false });
+  }
+});
+
+Meteor.methods({
+  'approveAgent': function(agent) {
+    Agents.update({ _id: agent._id }, { $set: { appStatus: 'approved' } });
+  }
+});
+
+Meteor.methods({
+  'rejectAgent': function(agent) {
+    Agents.update({ _id: agent._id }, { $set: { appStatus: 'rejected' } });
   }
 });

@@ -1,10 +1,21 @@
 /* CSS declarations go here */
-.agent-list {
+/*.agent-list {
   float: right;
-  width: 28%;
+  max-width: 28%;
+}*/
+
+.agent-inspect-left {
+  float: left;
 }
 
-.agent-inspect {
-  
-  width: 35%;
+.agent-inspect-right {
+  float: right;
+  margin-left: 15px;
+}
+
+.prof-pic {
+  max-height: 110px;
+  max-width: 100px;
+  min-height: 100px;
+  min-width: 100px;
 }

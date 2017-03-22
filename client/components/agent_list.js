@@ -6,8 +6,9 @@ import { connect } from 'react-redux';
 import AgentDetail from './agent_detail';
 
 class AgentList extends Component {
+
+
   render() {
-    console.log(this.props)
     return (
       <div className="agent-list">
       <div className="ui cards">

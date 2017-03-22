@@ -10,6 +10,7 @@ import renderField from './render_field';
 
 class Page2 extends Component {
   render() {
+    const { invalid } = this.props
     return (
       <div className="ui container">
         <h2 className="ui header center aligned">License Information</h2>
@@ -19,51 +20,39 @@ class Page2 extends Component {
                 <label>License State</label>
                 <Field
                   name="licenseState"
-                  component={StateSelect} />
+                  component={StateSelect}
+                  validate='' />
               </div>
-              <div className="field">
-                <label>Personal BRE # or DRE #</label>
-                <Field
-                  name="personalNum"
-                  component="input"
-                  type="text"
-                  placeholder="BRE # or DRE #" />
-              </div>
+                <Field name="personalNum" type="text" label="Personal BRE # or DRE #"
+                  component={renderField}
+                  validate=''/>
             </div>
 
             <div className="two fields">
-              <div className="field">
-                <label>Brokerage Name</label>
-                <Field
-                  name="brokerageName"
-                  component='input'
-                  type="text"/>
+                <Field name="brokerageName" type="text" label="Brokerage Name"
+                  component={renderField}
+                  validate=''
+                  />
+                <Field name="brokerageNum" type="text" label="Office BRE # or DRE #"
+                  component={renderField}
+                  validate='' />
               </div>
-              <div className="field">
-                <label>Office BRE # or DRE #</label>
-                <Field
-                  name="brokerageNum"
-                  component="input"
-                  type="text"
-                  placeholder="BRE # or DRE #" />
-              </div>
-            </div>
+
 
             <div className="field">
               <label >Are you applying as a solo agent or a team?</label>
-              <Field
-                name="soloOrTeam"
-                component={TeamSelect} />
+              <Field name="soloOrTeam"
+                component={TeamSelect}
+                validate=''/>
             </div>
 
             <div className="inline field" >
               <div className="ui right pointing label">
                 Number of Buyer Agents on Team
               </div>
-              <Field
-                name="teamBuyAgents"
+              <Field name="teamBuyAgents" type='number'
                 component='input'
-                type='number'/>
+                validate=''/>
             </div>
 
             <div className="inline field" >

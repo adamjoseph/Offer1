@@ -4,6 +4,7 @@ import { check, Match } from 'meteor/check';
 
 
 import  { Agents } from '../imports/collections/agents';
+import { Accounts } from 'meteor/accounts-base';
 
 
 
@@ -41,22 +42,35 @@ Meteor.methods({
 
     Agents.insert({ agent, appStatus: 'hold', admin: false, reviewed: false });
   }
-});
+});//close addAgent
 
 Meteor.methods({
   'approveAgent': function(agent) {
-    Agents.update({ _id: agent._id }, { $set: { appStatus: 'approved', reviewed: true } });
+    //Agents.update({ _id: agent._id }, { $set: { appStatus: 'approved', reviewed: true } });
+
+    const { fname, lname, email, phone, address, city, usState, zip, personalNum, brokerageName, brokerageNum } = agent.agent
+
+    const profile = { fname, lname, phone, address, city, usState, zip, personalNum, brokerageName, brokerageNum }
+    //console.log(profile);
+    Accounts.createUser({
+      email: email,
+      password: phone,
+      profile: profile
+    })
+    console.log('account created');
+
+
   }
-});
+});//close approveAgent
 
 Meteor.methods({
   'rejectAgent': function(agent) {
     Agents.update({ _id: agent._id }, { $set: { appStatus: 'rejected', reviewed: true } });
   }
-});
+});//close rejectAgent
 
 Meteor.methods({
   'holdAgent': function(agent) {
     Agents.update({ _id: agent._id }, { $set: { reviewed: true } });
   }
-});
+});//close holdAgent

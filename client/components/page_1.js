@@ -22,20 +22,20 @@ class Page1 extends Component {
             <div className="fields">
               <Field name="fname" type="text" label="First Name"
                 component={renderField}
-                validate={required}
+                validate=""
                 />
               <Field name="lname" type="text" label="Last Name"
                 component={renderField}
-                validate={required}
+                validate=""
                 />
             </div>
             <Field name="email" type="email" label="Email"
               component={renderField}
-              validate={required}
+              validate=""
             />
             <Field name="phone" type="text" label="Cell Phone"
               component={renderField}
-              validate={required}
+              validate=""
              />
           </div>
           <div className="page-btn">

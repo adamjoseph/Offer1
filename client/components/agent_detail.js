@@ -7,8 +7,8 @@ import { clearAgent } from '../actions/index';
 class AgentDetail extends Component {
 
   approve(agent) {
-    this.props.agentClear();
-    //Meteor.call('approveAgent', agent);
+    //this.props.agentClear();
+    Meteor.call('approveAgent', agent);
     //   Meteor.call('sendEmail',
     //           agent.agent.email,
     //           'ApplicationTeam@Offer1.com',

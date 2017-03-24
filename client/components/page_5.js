@@ -13,11 +13,8 @@ class Page5 extends Component {
 
   onSubmit(props) {
     const agentEmail = props.email;
-    console.log(props);
-    console.log(props.email);
 
     Meteor.call('addAgent', props);
-
 
     // Meteor.call('sendEmail',
     //         agentEmail,

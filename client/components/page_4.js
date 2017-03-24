@@ -15,9 +15,9 @@ class Page4 extends Component {
     const { invalid } = this.props
     return (
       <div className="ui container">
-        <h2 className="ui header center aligned">Survey Questions</h2>
+        <h2 className="ui header center aligned">Help Us Get to Know You</h2>
         <div className="">
-        <h4 className="ui dividing header center aligned">Page Four</h4>
+        <h4 className="ui dividing header center aligned">We want to assist you in the growth of your business</h4>
       {/* <PreviousInputs /> */}
 
       <div className="ui equal width form">
@@ -73,6 +73,11 @@ class Page4 extends Component {
           <Field name="certifyTrue" component="input" type='checkbox' validate={checked} />
           <label>I certify all of my above answers to be accurate and true to the best of my knowledge.</label>
         </div>
+
+        <div className="ui checkbox survey-question">
+          <Field name="provideMls" component="input" type='checkbox' validate={checked} />
+          <label><strong>I agree to provide a copy of my MLS YTD production report upon request</strong></label>
+        </div>
       </div>
         <Link to="/page5">
           <Button color="green" floated="right"
@@ -91,7 +96,7 @@ class Page4 extends Component {
 
 FormPage4 = reduxForm({
   form: 'Application',
-  fields: ['buyerTrans', 'listerTrans', 'listAvg', 'earlyAdopter', 'leadsPerMonth', 'openToNewMethods', 'videoTestimony', 'certifyTrue'],
+  fields: ['buyerTrans', 'listerTrans', 'listAvg', 'earlyAdopter', 'leadsPerMonth', 'openToNewMethods', 'videoTestimony', 'certifyTrue', 'provideMls'],
   destroyOnUnmount: false
 })(Page4)
 

@@ -10,7 +10,9 @@ import { connect } from 'react-redux';
 import AgentList from './agent_list';
 //import AgentDetail from './agent_detail';
 import AgentInspect from './agent_inspect';
+import AgentSearch from './agent_search';
 
+//const stateSearch
 
 
 class AdminPage extends Component {
@@ -23,6 +25,7 @@ class AdminPage extends Component {
     return (
       <div className="ui container">
         <h1 className="ui dividing header center aligned">Adminstration Home</h1>
+        <AgentSearch />
         <div className="ui grid">
           <div className="eleven wide column">
             <AgentInspect />
@@ -41,8 +44,10 @@ export default createContainer(() => {
   //set up subscription
   const subscription = Meteor.subscribe('agents');
   const loading = !subscription.ready();
-  const agents = Agents.find({'reviewed': false }, { limit: 3 }).fetch();
+  const agents = Agents.find({'reviewed': false },
+                            { limit: 3 },).fetch();
 
+  console.log('suscribe hit');
   //return an object
   return { agents, loading };
 }, AdminPage);

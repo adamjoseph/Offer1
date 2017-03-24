@@ -14,10 +14,11 @@
 }
 
 .prof-pic {
-  max-height: 110px;
+  max-height: 120px;
   max-width: 100px;
-  min-height: 100px;
+  min-height: 110px;
   min-width: 100px;
+  margin: 0px auto;
 }
 
 .form-page {
@@ -35,4 +36,9 @@
 
 .survey-question {
   margin: 5px 0px;
+}
+
+.extra-check {
+  float: right;
+  margin-bottom: 20px;
 }

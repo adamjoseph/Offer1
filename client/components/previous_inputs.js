@@ -13,7 +13,7 @@ let ShowPreviousInputs = (props) => {
 
     return (
       <div className='' >
-        <h2 className="ui header center aligned">Confirm Info and Demographic Data</h2>
+        <h2 className="ui header center aligned">Confirm Info</h2>
           <div className="ui three column grid">
 
             <div className="column">
@@ -30,7 +30,7 @@ let ShowPreviousInputs = (props) => {
 
             <div className="column">
               <div className="ui segment">
-                <p><strong>License State:</strong> {licenseState}</p>
+                <p><strong>License State:</strong> {usState}</p>
                 <p><strong>Personal DRE #:</strong> {personalNum}</p>
                 <p><strong>Brokerage Name:</strong> {brokerageName}</p>
                 <p><strong>Brokerage DRE #:</strong> {brokerageNum}</p>

@@ -25,6 +25,7 @@ const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(
 ));
 
 Tracker.autorun(() => {
+  //console.log('autorun hit ')
   store.dispatch({
     type: 'GET_AGENTS',
     agents: Agents.find({'reviewed': false}).fetch()

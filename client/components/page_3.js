@@ -36,8 +36,12 @@ class Page3 extends Component {
                 validate=''
                 />
               <Field name="brokerageNum" type="text" label="Office BRE # or DRE #"
-                component={labeledCheckboxField}
+                component={renderField}
                 validate='' />
+              </div>
+              <div className="ui checkbox extra-check">
+                <Field  name="sameNum" component="input" type='checkbox'/>
+                <label >Same as personal BRE # ?</label>
               </div>
 
             <div className="field">
@@ -94,7 +98,7 @@ class Page3 extends Component {
 
 const FormPage3 = reduxForm({
   form: 'Application',
-  fields: ['brokerageName', 'brokerageNum', 'soloOrTeam', 'teamBuyAgents', 'teamListAgents', 'adminStaff' ],
+  fields: ['brokerageName', 'brokerageNum', 'sameNum', 'soloOrTeam', 'teamBuyAgents', 'teamListAgents', 'adminStaff' ],
   destroyOnUnmount: false
 })(Page3)
 

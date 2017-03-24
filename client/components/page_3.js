@@ -1,95 +1,100 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import { Grid, Image, Button } from 'semantic-ui-react';
+import { Form, Grid, Input, Button } from 'semantic-ui-react';
 import { Link } from 'react-router';
+import { Field, reduxForm } from 'redux-form';
 
-import PreviousInputs from './previous_inputs';
+import StateSelect from './state_select';
+import TeamSelect from './team_select';
+import renderField from './render_field';
+import labeledField from './labeled_field';
+
+const labeledCheckboxField = ({ input, label, type, info, meta: { touched, error, warning } }) => (
+  <div className={`field ${touched && error ? 'error' : ''}`}>
+    <label>{label}</label>
+    <div className=''>
+      <input {...input} placeholder={label} type={type}/>
+      <div className="ui pointing label">
+        Same as Personal BRE # ? <span>  <input type="checkbox" /></span>
+      </div>
+    </div>
+  </div>
+)
+
 
 class Page3 extends Component {
-
-
   render() {
+    const { invalid } = this.props
     return (
       <div className="ui container">
-      <PreviousInputs />
-      <div className="ui form">
-        <div className="inline fields">
-          <div className="field">
-            <label>How Many Buyer transactions have you personally closed in the last 12 months?</label>
-            <Field name="buyerTrans" component='input' type="number"/>
-          </div>
+        <h2 className="ui header center aligned">Company Information</h2>
+        <div className="form-page">
+          <h4 className="ui dividing header center aligned">Page Three</h4>
+          <div className="ui equal width form">
+            <div className="two fields">
+              <Field name="brokerageName" type="text" label="Brokerage Name"
+                component={renderField}
+                validate=''
+                />
+              <Field name="brokerageNum" type="text" label="Office BRE # or DRE #"
+                component={labeledCheckboxField}
+                validate='' />
+              </div>
+
+            <div className="field">
+              <label >Are you applying as a solo agent or a team?</label>
+              <Field name="soloOrTeam"
+                component={TeamSelect}
+                validate=''/>
+            </div>
+
+            <div className="inline field" >
+              <div className="ui right pointing label">
+                Number of Buyer Agents on Team
+              </div>
+              <Field name="teamBuyAgents" type='number'
+                component='input' className="small-input"
+                validate=''/>
+            </div>
+
+            <div className="inline field" >
+              <div className="ui right pointing label">
+                List Agents on your team including you?
+              </div>
+              <Field
+                name="teamListAgents" type='number'
+                component='input' className="small-input"
+                type='number'/>
+            </div>
+
+            <div className="inline field" >
+              <div className="ui right pointing label">
+                Number of Administrative Staff
+              </div>
+              <Field
+                name="adminStaff" type='number'
+                component='input' className="small-input"
+                type='number'/>
+            </div>
+
+
+          <Link to="/page4">
+            <Button color="green" floated="right">Next</Button>
+          </Link>
+
+          <Link to="/page2">
+            <Button color="red" floated="right">Back</Button>
+          </Link>
+
         </div>
-      </div>
-
-      <div className="ui form">
-        <div className="inline fields">
-          <div className="field">
-            <label>How Many Listing transactions have you closed in the last 12 months?</label>
-            <Field name="listerTrans" component='input' type="number"/>
-          </div>
         </div>
-      </div>
-
-      <div className="ui form">
-        <div className="inline fields">
-          <div className="field">
-            <label>How Many Listing transactions do you close on average per month?</label>
-            <Field name="listAvg" component='input' type="number"/>
-          </div>
-        </div>
-      </div>
-
-      <div className="ui form">
-        <div className="inline fields">
-          <div className="field">
-            <label>How many new listing leads (per month) do you think you would be able to comfortably and expertly manage?</label>
-            <Field name="leadsPerMonth" component='input' type="number"/>
-          </div>
-        </div>
-      </div>
-
-      <div className="">
-        <div className="field">
-          <div className="ui checkbox">
-            <label>Are you comfortable being an early adopter of technology?</label>
-            <Field name="earlyAdopter" component="input" type='checkbox'/>
-          </div>
-        </div>
-      </div>
-
-      <div >
-        <label>Are you open to trying new methods of listing if it helps you sell homes faster, at a higher price, and with greater consumer satisfaction?</label>
-        <Field name="openToNewMethods" component="input" type='checkbox'/>
-      </div>
-
-      <div >
-        <label>If your application is accepted, and Offer1 savaes you time and money, while better serving your client, will you provide us a video testimony?</label>
-        <Field name="videoTestimony" component="input" type='checkbox'/>
-      </div>
-
-      <div >
-        <label>I certify all of my above answers to be accurate and true to the best of my knowledge.</label>
-        <Field name="certifyTrue" component="input" type='checkbox'/>
-      </div>
-
-      <Link to="/page4">
-      <Button color="green" floated="right">Next</Button>
-      </Link>
-
-      <Link to="/page2">
-      <Button color="red" floated="right">Back</Button>
-      </Link>
-
       </div>
     );
   }
 }
 
-
-FormPage3 = reduxForm({
+const FormPage3 = reduxForm({
   form: 'Application',
-  fields: ['buyerTrans', 'listerTrans', 'listAvg', 'earlyAdopter', 'leadsPerMonth', 'openToNewMethods', 'videoTestimony', 'certifyTrue'],
+  fields: ['brokerageName', 'brokerageNum', 'soloOrTeam', 'teamBuyAgents', 'teamListAgents', 'adminStaff' ],
   destroyOnUnmount: false
 })(Page3)
 

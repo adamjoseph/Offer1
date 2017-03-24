@@ -22,7 +22,7 @@ class AdminPage extends Component {
   render() {
     return (
       <div className="ui container">
-        <h1 className="ui header center aligned">Adminstration Home</h1>
+        <h1 className="ui dividing header center aligned">Adminstration Home</h1>
         <div className="ui grid">
           <div className="eleven wide column">
             <AgentInspect />
@@ -41,7 +41,7 @@ export default createContainer(() => {
   //set up subscription
   const subscription = Meteor.subscribe('agents');
   const loading = !subscription.ready();
-  const agents = Agents.find({'appStatus': 'hold'}, { limit: 3 }).fetch();
+  const agents = Agents.find({'reviewed': false }, { limit: 3 }).fetch();
 
   //return an object
   return { agents, loading };

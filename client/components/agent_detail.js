@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
+import { bindActionCreators, dispatch } from 'redux';
+import { connect } from 'react-redux';
+
+import { clearAgent } from '../actions/index';
 
 class AgentDetail extends Component {
 
   approve(agent) {
-    Meteor.call('approveAgent', agent);
-  //   Meteor.call('sendEmail',
-  //           agent.agent.email,
-  //           'ApplicationTeam@Offer1.com',
-  //           'Welcome!',
-  //           'Your Application to Offer1 has been accepted!');
+    this.props.agentClear();
+    //Meteor.call('approveAgent', agent);
+    //   Meteor.call('sendEmail',
+    //           agent.agent.email,
+    //           'ApplicationTeam@Offer1.com',
+    //           'Welcome!',
+    //           'Your Application to Offer1 has been accepted.');
+
    }
 
   reject(agent) {
+    this.props.agentClear();
     Meteor.call('rejectAgent', agent);
     // Meteor.call('sendEmail',
     //         agent.agent.email,
@@ -22,28 +29,31 @@ class AgentDetail extends Component {
   }
 
   hold(agent) {
+    this.props.agentClear();
+    Meteor.call('holdAgent', agent);
     // Meteor.call('sendEmail',
     //         agent.agent.email,
     //         'ApplicationTeam@Offer1.com',
     //         'Application Update',
-    //         'Your Application to Offer1 has been held. Please review our requirements.');
+    //         'Your Application to Offer1 has been held. Please review our requirements
+    //         and update your information.');
   }
 
   render() {
   const { agent } = this.props
-  const { fname, lname, email, } = this.props.agent.agent
+  const { fname, lname, email, phone, listAvg } = this.props.agent.agent
   return (
     <div className="card" >
       <div className="content" onClick={() => this.props.clickHandler(this.props.agent.agent)}>
         {/* Place Image tag here */}
         <div className="header">
-          {fname} {lname}
+          {fname} {lname} { listAvg >= 4 ? <i className="star icon"></i> : ''}
         </div>
         <div className="meta">
-          Brokerage Name?
+          {email}
         </div>
         <div className="description">
-          More description of the agent
+          Phone: {phone}
         </div>
       </div>
       <div className="extra content">
@@ -63,5 +73,6 @@ class AgentDetail extends Component {
   );
   }
 };
+
 
 export default AgentDetail

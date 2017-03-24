@@ -25,9 +25,9 @@ const AgentInspect = (props) => {
               <p>{city}, {usState} {zip}</p>
               <p><strong>Phone:</strong> {phone}</p>
               <p><strong>Email:</strong> {email}</p>
-              <p><strong>Early Adopter of Technology?:</strong> {earlyAdopter ? 'Yes' : 'No'}</p>
-              <p><strong>Open to Trying New Methods?:</strong> {openToNewMethods ? 'Yes' : 'No'}</p>
-              <p><strong>Willing to Provide Video Testimony?:</strong> {videoTestimony ? 'Yes' : 'No'}</p>
+              <p><strong>Early Adopter of Technology?</strong> {earlyAdopter ? 'Yes' : 'No'}</p>
+              <p><strong>Open to Trying New Methods?</strong> {openToNewMethods ? 'Yes' : 'No'}</p>
+              <p><strong>Willing to Provide Video Testimony?</strong> {videoTestimony ? 'Yes' : 'No'}</p>
             </div>
 
             <div className="agent-inspect-right">

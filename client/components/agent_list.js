@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { selectAgent } from '../actions/index';
+import { selectAgent, clearAgent } from '../actions/index';
 import { bindActionCreators, mapStateToProps, dispatch } from 'redux';
 import { connect } from 'react-redux';
 
@@ -15,6 +15,7 @@ class AgentList extends Component {
         {this.props.agents.map(agent =>
           <AgentDetail key={agent._id}
             agent={agent} clickHandler={this.props.selectAgent}
+            agentClear={this.props.clearAgent}
 
           />
         )}
@@ -32,7 +33,10 @@ class AgentList extends Component {
 function mapDispatchToProps(dispatch) {
 
   const actions = {};
-  const actionMap = { selectAgent: bindActionCreators(selectAgent, dispatch), dispatch};
+  const actionMap = {
+    selectAgent: bindActionCreators(selectAgent, dispatch),
+    clearAgent: bindActionCreators(clearAgent, dispatch),
+    dispatch};
 
   return actionMap;
 }

@@ -14,3 +14,10 @@ export function getAgents() {
     payload: agents
   }
 }
+
+export function clearAgent() {
+  return {
+    type: 'CLEAR_AGENT',
+    payload: null
+  }
+}

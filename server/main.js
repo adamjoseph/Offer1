@@ -39,18 +39,24 @@ Meteor.methods({
     //run any check functions
 
 
-    Agents.insert({ agent, appStatus: 'hold', admin: false });
+    Agents.insert({ agent, appStatus: 'hold', admin: false, reviewed: false });
   }
 });
 
 Meteor.methods({
   'approveAgent': function(agent) {
-    Agents.update({ _id: agent._id }, { $set: { appStatus: 'approved' } });
+    Agents.update({ _id: agent._id }, { $set: { appStatus: 'approved', reviewed: true } });
   }
 });
 
 Meteor.methods({
   'rejectAgent': function(agent) {
-    Agents.update({ _id: agent._id }, { $set: { appStatus: 'rejected' } });
+    Agents.update({ _id: agent._id }, { $set: { appStatus: 'rejected', reviewed: true } });
+  }
+});
+
+Meteor.methods({
+  'holdAgent': function(agent) {
+    Agents.update({ _id: agent._id }, { $set: { reviewed: true } });
   }
 });

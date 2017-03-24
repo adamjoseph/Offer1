@@ -1,98 +1,88 @@
-import React, { Component, PropTypes } from 'react';
-import { Link, browserHistory } from 'react-router';
-import { Button } from 'semantic-ui-react';
-import { reduxForm, formValueSelector  } from 'redux-form';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Field, reduxForm } from 'redux-form';
+import { Grid, Image, Button } from 'semantic-ui-react';
+import { Link } from 'react-router';
 
 import PreviousInputs from './previous_inputs';
 
-const selector = formValueSelector('Application');
+ const checked = value => value === true ? '' : 'Must Certify True'
 
 class Page4 extends Component {
 
-  onSubmit(props) {
-    const agentEmail = props.email;
-    console.log(props);
-    console.log(props.email);
-
-    Meteor.call('addAgent', props);
-
-
-    // Meteor.call('sendEmail',
-    //         agentEmail,
-    //         'ApplicationTeam@Offer1.com',
-    //         'Thank You!',
-    //         'Thank you for applying to Offer1. An administrator will review your application.');
-    browserHistory.push('/thankyou');
-  }
 
   render() {
-    const { handleSubmit, values } = this.props
-
+    const { invalid } = this.props
     return (
-      <div className='ui container'>
-        <h1 className='ui header center aligned'>Final Step for Agent Application</h1>
-        <PreviousInputs />
-        <h3 className='ui header center aligned'>Agents selected to participate in a rollout will be grandfathered into our lowest pricing</h3>
-        <h4 className='ui header center aligned'>If your application is accepted you will receive the following</h4>
-        <div className="ui three column grid">
-          <div className="column">
-            <div className="ui segment">
-            <ul className='ui list'>
-              <li>Seller Registration</li>
-              <li>List Presentation Materials</li>
-              <li>Electronic Signatures</li>
-              <li>Property Page</li>
-              <li>Property View Counter</li>
-              <li>Offer Submission</li>
-              <li>Seller Notification</li>
-              <li>Email Offer Notification</li>
-              <li>Offer comparison tool</li>
-              <li>Offer Validation</li>
-            </ul>
-          </div>
-          </div>
-          <div className="column">
-            <div className="ui segment">
-            <ul className='ui list'>
-              <li>Contract generator</li>
-              <li>Buyer profile creation</li>
-              <li>Seller Document storage</li>
-              <li>Seller estimated HUD</li>
-              <li>Seller Title PR</li>
-              <li>Seller Video Series</li>
-              <li>Agent public profile</li>
-              <li>Offer Presentation tool</li>
-              <li>Buyer Agent Organizer</li>
-              <li>Offer time stamp</li>
-              <li>Listing Process</li>
-              <li>Buyer demand generator</li>
-            </ul>
-          </div>
-          </div>
-          <div className="column">
-            <div className="ui segment">
-            <ul className='ui list'>
-              <li>UNLIMITED MONTHLY TRANSACTIONS</li>
-              <li>Transaction History</li>
-              <li>Client History and Lookup</li>
-              <li>Seller Leads</li>
-              <li>Buyer Leads</li>
-              <li>Private FB Page Access</li>
-              <li>Market Data Access</li>
-              <li>Eligibility to Platinum and Ambassador programs</li>
-              <li>Team data history</li>
-            </ul>
-          </div>
+      <div className="ui container">
+        <h2 className="ui header center aligned">Survey Questions</h2>
+        <div className="">
+        <h4 className="ui dividing header center aligned">Page Four</h4>
+      {/* <PreviousInputs /> */}
+
+      <div className="ui equal width form">
+        <div className="inline fields">
+          <div className="field">
+            <label>How Many Buyer transactions have you personally closed in the last 12 months?</label>
+            <Field name="buyerTrans" component='input' type="number" className="small-input"/>
           </div>
         </div>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Button color="green" type="submit" floated="right" >Finish</Button>
-          <Link to="/page3">
-            <Button color="red" floated="right" >Back</Button>
-          </Link>
-        </form>
+
+        <div className="ui form">
+          <div className="inline fields">
+            <div className="field">
+              <label>How Many Listing transactions have you closed in the last 12 months?</label>
+              <Field name="listerTrans" component='input' type="number" className="small-input"/>
+            </div>
+          </div>
+        </div>
+
+        <div className="ui form">
+          <div className="inline fields">
+            <div className="field">
+              <label>How Many Listing transactions do you close on average per month?</label>
+              <Field name="listAvg" component='input' type="number" className="small-input"/>
+            </div>
+          </div>
+        </div>
+
+        <div className="ui form">
+          <div className="inline fields">
+            <div className="field">
+              <label>How many new listing leads (per month) do you think you would be able to comfortably and expertly manage?</label>
+              <Field name="leadsPerMonth" component='input' type="number" className="small-input"/>
+            </div>
+          </div>
+        </div>
+        <div className="ui checkbox survey-question">
+          <Field  name="earlyAdopter" component="input" type='checkbox'/>
+          <label >Are you comfortable being an early adopter of technology?</label>
+        </div>
+
+        <div className="ui checkbox survey-question">
+          <Field name="openToNewMethods" component="input" type='checkbox'/>
+          <label>Are you open to trying new methods of listing if it helps you sell homes faster, at a higher price, and with greater consumer satisfaction?</label>
+        </div>
+
+        <div className="ui checkbox survey-question">
+          <Field name="videoTestimony" component="input" type='checkbox'/>
+          <label>If your application is accepted, and Offer1 savaes you time and money, while better serving your client, will you provide us a video testimony?</label>
+        </div>
+
+        <div className="ui checkbox survey-question">
+          <Field name="certifyTrue" component="input" type='checkbox' validate={checked} />
+          <label>I certify all of my above answers to be accurate and true to the best of my knowledge.</label>
+        </div>
+      </div>
+        <Link to="/page5">
+          <Button color="green" floated="right"
+            className={invalid ? 'disabled' : ''}>Next</Button>
+        </Link>
+
+        <Link to="/page3">
+          <Button color="red" floated="right">Back</Button>
+        </Link>
+      </div>
       </div>
     );
   }
@@ -101,13 +91,9 @@ class Page4 extends Component {
 
 FormPage4 = reduxForm({
   form: 'Application',
+  fields: ['buyerTrans', 'listerTrans', 'listAvg', 'earlyAdopter', 'leadsPerMonth', 'openToNewMethods', 'videoTestimony', 'certifyTrue'],
   destroyOnUnmount: false
 })(Page4)
 
-export default Page4Connect = connect(
-  state => {
-    //const  email  = selector(state, 'email');
-    const  values  = selector(state, 'values');
-    return { values }
-  }
-)(FormPage4)
+
+export default FormPage4

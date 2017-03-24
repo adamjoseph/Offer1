@@ -19,3 +19,20 @@
   min-height: 100px;
   min-width: 100px;
 }
+
+.form-page {
+  margin: 0px auto;
+  max-width: 45%;
+}
+
+.page-btn {
+  margin-top: 15px;
+}
+
+.small-input {
+  max-width: 65px;
+}
+
+.survey-question {
+  margin: 5px 0px;
+}

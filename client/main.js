@@ -27,11 +27,9 @@ const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(
 Tracker.autorun(() => {
   store.dispatch({
     type: 'GET_AGENTS',
-    agents: Agents.find({}).fetch()
+    agents: Agents.find({'reviewed': false}).fetch()
   });
 });
-
-
 
 
 //const createStoreWithMiddleWare = applyMiddleware()(createStore);

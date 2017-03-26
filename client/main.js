@@ -21,17 +21,16 @@ import rootReducer from './reducers/index';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(
 
-    applyMiddleware()
+    applyMiddleware(promise)
 ));
 
-Tracker.autorun(() => {
-  //console.log('autorun hit ')
-  store.dispatch({
-    type: 'GET_AGENTS',
-    agents: Agents.find({'reviewed': false}).fetch()
-  });
-});
-
+// Tracker.autorun(() => {
+//   console.log('autorun hit');
+//   store.dispatch({
+//     type: 'GET_AGENTS',
+//     agents: Agents.find({'reviewed': false}).fetch()
+//   });
+// });
 
 //const createStoreWithMiddleWare = applyMiddleware()(createStore);
 //createStoreWithMiddleWare(reducers)

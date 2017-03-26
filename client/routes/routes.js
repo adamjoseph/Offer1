@@ -3,13 +3,14 @@ import { Route, IndexRoute } from 'react-router';
 
 import App from '../components/app';
 import SignIn from '../components/sign_in';
-import FormPage1 from '../components/page_1';
-import FormPage2 from '../components/page_2';
-import FormPage3 from '../components/page_3';
-import FormPage4 from '../components/page_4';
-import FormPage5 from '../components/page_5';
+import FormPage1 from '../components/form/page_1';
+import FormPage2 from '../components/form/page_2';
+import FormPage3 from '../components/form/page_3';
+import FormPage4 from '../components/form/page_4';
+import FormPage5 from '../components/form/page_5';
 import ThankYou from '../components/thank_you';
-import AdminPage from '../components/admin_page';
+import AdminPage from '../components/admin/admin_page';
+import AgentHome from '../components/agent_home';
 
 export default (
   <Route path="/" component={App} >
@@ -21,5 +22,6 @@ export default (
     <Route path="page5" component={FormPage5} />
     <Route path="/thankyou" component={ThankYou} />
     <Route path="/admin" component={AdminPage} />
+    <Route path="/agent" component={AgentHome} />
   </Route>
 );

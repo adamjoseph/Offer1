@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
 import { Form, Button } from 'semantic-ui-react';
 
-import renderField from './render_field';
+import renderField from '../render_field';
 
 const required = value => value ? undefined : 'Required';
 const email = value =>

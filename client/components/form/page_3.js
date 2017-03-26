@@ -1,29 +1,33 @@
 import React, { Component } from 'react';
 import { Form, Grid, Input, Button } from 'semantic-ui-react';
 import { Link } from 'react-router';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
+import { connect } from 'react-redux';
 
-import StateSelect from './state_select';
-import TeamSelect from './team_select';
-import renderField from './render_field';
-import labeledField from './labeled_field';
+import StateSelect from '../state_select';
+import TeamSelect from '../team_select';
+import renderField from '../render_field';
+import labeledField from '../labeled_field';
 
-const labeledCheckboxField = ({ input, label, type, info, meta: { touched, error, warning } }) => (
-  <div className={`field ${touched && error ? 'error' : ''}`}>
-    <label>{label}</label>
-    <div className=''>
-      <input {...input} placeholder={label} type={type}/>
-      <div className="ui pointing label">
-        Same as Personal BRE # ? <span>  <input type="checkbox" /></span>
-      </div>
-    </div>
-  </div>
-)
+const selector = formValueSelector('Application');
+
+// const labeledCheckboxField = ({ input, label, type, info, meta: { touched, error, warning } }) => (
+//   <div className={`field ${touched && error ? 'error' : ''}`}>
+//     <label>{label}</label>
+//     <div className=''>
+//       <input {...input} placeholder={label} type={type}/>
+//       <div className="ui pointing label">
+//         Same as Personal BRE # ? <span>  <input type="checkbox" /></span>
+//       </div>
+//     </div>
+//   </div>
+// )
 
 
 class Page3 extends Component {
   render() {
-    const { invalid } = this.props
+    const { invalid, solo } = this.props
+    //console.log(this.props);
     return (
       <div className="ui container">
         <h2 className="ui header center aligned">Company Information</h2>
@@ -50,7 +54,7 @@ class Page3 extends Component {
                 component={TeamSelect}
                 validate=''/>
             </div>
-
+            {solo === 'team' ?<div>
             <div className="inline field" >
               <div className="ui right pointing label">
                 Number of Buyer Agents on Team
@@ -62,7 +66,7 @@ class Page3 extends Component {
 
             <div className="inline field" >
               <div className="ui right pointing label">
-                List Agents on your team including you?
+                List Agents on your team including you
               </div>
               <Field
                 name="teamListAgents" type='number'
@@ -79,6 +83,8 @@ class Page3 extends Component {
                 component='input' className="small-input"
                 type='number'/>
             </div>
+          </div>
+            : <div></div>}
 
 
           <Link to="/page4">
@@ -103,4 +109,12 @@ const FormPage3 = reduxForm({
 })(Page3)
 
 
-export default FormPage3
+//export default FormPage3
+
+export default Page3Connect = connect(
+  state => {
+    //const  email  = selector(state, 'email');
+    const  solo  = selector(state, 'soloOrTeam');
+    return { solo }
+  }
+)(FormPage3)

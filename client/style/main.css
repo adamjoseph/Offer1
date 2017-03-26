@@ -1,15 +1,21 @@
 /* CSS declarations go here */
-/*.agent-list {
-  float: right;
-  max-width: 28%;
-}*/
+.agent-list {
+
+}
+
+.ui.cards {
+  overflow: auto;
+  max-height: 400px;
+  /*border: 2px solid #E0E1E2;
+  border-radius: 5px;*/
+}
 
 .agent-inspect-left {
-  float: left;
+  display: inline-block;
 }
 
 .agent-inspect-right {
-  float: right;
+  display: inline-block;
   margin-left: 15px;
 }
 
@@ -36,9 +42,24 @@
 
 .survey-question {
   margin: 5px 0px;
+  display: block !important;
 }
 
 .extra-check {
   float: right;
   margin-bottom: 20px;
+}
+
+.search-bar {
+  padding-top: 15px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  margin-bottom: 15px;
+  border-radius: .28571429rem;
+  background-color: rgba(224, 225, 226, 0.3);
+  overflow-x: scroll;
+}
+
+.nav-bar {
+  height: 75px;
 }

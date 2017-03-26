@@ -5,9 +5,9 @@ import { Field, reduxForm } from 'redux-form';
 //const { DOM: { input } } = React;
 // import validate from '../reducers/validate';
 //import components
-import StateSelect from './state_select';
-import renderField from './render_field';
-import labeledField from './labeled_field';
+import StateSelect from '../state_select';
+import renderField from '../render_field';
+import labeledField from '../labeled_field';
 
 //import requiredInput from './validate';
 

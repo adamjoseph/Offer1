@@ -21,3 +21,5 @@ react-meteor-data
 standard-minifier-css
 email
 accounts-password
+practicalmeteor:faker
+alanning:roles

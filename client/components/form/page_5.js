@@ -5,7 +5,7 @@ import { reduxForm, formValueSelector  } from 'redux-form';
 import { connect } from 'react-redux';
 
 
-import PreviousInputs from './previous_inputs';
+import PreviousInputs from '../previous_inputs';
 
 const selector = formValueSelector('Application');
 
@@ -26,7 +26,7 @@ class Page5 extends Component {
 
   render() {
     const { handleSubmit, values } = this.props
-
+    //console.log(this.props)
     return (
       <div className='ui container'>
         <h1 className='ui header center aligned'>Final Step for Agent Application</h1>
@@ -47,6 +47,8 @@ class Page5 extends Component {
               <li>Email Offer Notification</li>
               <li>Offer comparison tool</li>
               <li>Offer Validation</li>
+              <br/>
+              <br/>
             </ul>
           </div>
           </div>
@@ -80,14 +82,16 @@ class Page5 extends Component {
               <li>Market Data Access</li>
               <li>Eligibility to Platinum and Ambassador programs</li>
               <li>Team data history</li>
+              <br/>
             </ul>
           </div>
           </div>
         </div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Button color="green" type="submit" floated="right" >Finish</Button>
+          <Button color="green" type="submit" floated="right"
+            >Finish</Button>
           <Link to="/page4">
-            <Button color="red" floated="right" >Back</Button>
+            <Button color="red" floated="right" className="page-btn">Back</Button>
           </Link>
         </form>
       </div>
@@ -108,3 +112,5 @@ export default Page5Connect = connect(
     return { values }
   }
 )(FormPage5)
+
+// className={invalid ? 'disabled' : ''}

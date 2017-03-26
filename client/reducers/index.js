@@ -7,7 +7,9 @@ import GetAgents from './reducer_agents';
 const rootReducer = combineReducers({
   form: formReducer,
   selectedAgent: SelectedAgent,
-  agents: GetAgents
+
 });
 
 export default rootReducer;
+
+// agents: GetAgents

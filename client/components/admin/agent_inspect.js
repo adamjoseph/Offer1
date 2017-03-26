@@ -32,7 +32,7 @@ const AgentInspect = (props) => {
 
             <div className="agent-inspect-right">
               <h4 className="ui header">Business Details:</h4>
-              <p><strong>License State:</strong> {licenseState}</p>
+              <p><strong>License State:</strong> {usState}</p>
               <p><strong>Personal DRE #:</strong> {personalNum}</p>
               <p><strong>Brokerage Name:</strong> {brokerageName}</p>
               <p><strong>Brokerage DRE #:</strong> {brokerageNum}</p>

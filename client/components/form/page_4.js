@@ -4,9 +4,13 @@ import { Field, reduxForm } from 'redux-form';
 import { Grid, Image, Button } from 'semantic-ui-react';
 import { Link } from 'react-router';
 
-import PreviousInputs from './previous_inputs';
+import PreviousInputs from '../previous_inputs';
 
- const checked = value => value === true ? '' : 'Must Certify True'
+const required = value => value ? undefined : 'Required';
+ const checked = value => value === true ? '' : 'Must Certify True';
+ const maxLength = max => value =>
+  value && value.length > max ? `Must be ${max} characters or less` : undefined
+ const maxLength10 = maxLength(10);
 
 class Page4 extends Component {
 

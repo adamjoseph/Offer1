@@ -1,24 +1,43 @@
 import React, { Component } from 'react';
-import { Menu, Image, Input, Button } from 'semantic-ui-react';
+import { Image } from 'semantic-ui-react';
+import { Link } from 'react-router';
 
 class NavBar extends Component {
 
   render() {
 
     return (
-      <Menu >
-        <Menu.Item header>
+      <div className="ui menu nav-bar" >
+        <div className="header item">
           <Image src='../../offer1logo.png' size='small'/>
-        </Menu.Item>
-        <Menu.Item name="homeSellers" />
-        <Menu.Item name="homeBuyers" />
-        <Menu.Item name="agents" />
-        <Menu.Item name="transactionVendors" />
-        <Menu.Item name="howItWorks" />
-        <Menu.Item position='right' name='login'/>
-      </Menu>
+        </div>
+        <div className="link item" >Home Sellers</div>
+        <div className="link item" >Home Buyers</div>
+        <div className="link item" >Agents</div>
+        <div className="link item" >Transaction Vendors</div>
+        <div className="link item" >How It Works</div>
+        <div className="right menu" >
+          <div className="link item">
+          <Link to='/' > Login </Link>
+          </div>
+        </div>
+      </div>
     );
   }
 }
 
 export default NavBar
+{/* <div class="ui menu">
+  <div class="header item">
+    Our Company
+  </div>
+  <a class="item">
+    About Us
+  </a>
+  <a class="item">
+    Jobs
+  </a>
+  <a class="item">
+    Locations
+  </a>
+</div> */}

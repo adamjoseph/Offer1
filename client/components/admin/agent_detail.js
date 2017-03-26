@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { bindActionCreators, dispatch } from 'redux';
 import { connect } from 'react-redux';
 
-import { clearAgent } from '../actions/index';
+import { clearAgent } from '../../actions/index';
 
 class AgentDetail extends Component {
 
   approve(agent) {
-    //this.props.agentClear();
+    //agentClear passed down as props from agentList, sends dispatch
+    this.props.agentClear();
     Meteor.call('approveAgent', agent);
     //   Meteor.call('sendEmail',
     //           agent.agent.email,
@@ -47,7 +48,7 @@ class AgentDetail extends Component {
       <div className="content" onClick={() => this.props.clickHandler(this.props.agent.agent)}>
         {/* Place Image tag here */}
         <div className="header">
-          {fname} {lname} { listAvg >= 4 ? <i className="star icon"></i> : ''}
+          {fname} {lname}
         </div>
         <div className="meta">
           {email}

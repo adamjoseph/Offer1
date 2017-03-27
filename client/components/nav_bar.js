@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Image } from 'semantic-ui-react';
 import { Link } from 'react-router';
 
+import Login from './login_btn';
+import Logout from './logout_btn';
+
 class NavBar extends Component {
 
   render() {
@@ -17,9 +20,7 @@ class NavBar extends Component {
         <div className="link item" >Transaction Vendors</div>
         <div className="link item" >How It Works</div>
         <div className="right menu" >
-          <div className="link item">
-          <Link to='/' > Login </Link>
-          </div>
+          {Meteor.user() === null ? <Login /> : <Logout />}
         </div>
       </div>
     );

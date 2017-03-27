@@ -4,13 +4,21 @@ import { Field, reduxForm } from 'redux-form';
 import { Grid, Image, Button } from 'semantic-ui-react';
 import { Link } from 'react-router';
 
-import PreviousInputs from '../previous_inputs';
+import renderField from '../render_field';
 
 const required = value => value ? undefined : 'Required';
  const checked = value => value === true ? '' : 'Must Certify True';
  const maxLength = max => value =>
   value && value.length > max ? `Must be ${max} characters or less` : undefined
  const maxLength10 = maxLength(10);
+
+ const smallField = ({ input, label, type, meta: { touched, error } }) => (
+   <div className={`field ${touched && error ? 'error' : ''}`}>
+     <label>{label}</label>
+       <input {...input} className="small-input" type={type}/>
+       {/* {touched && error && (<label className='field error'>{error}</label>)} */}
+   </div>
+ )
 
 class Page4 extends Component {
 
@@ -21,15 +29,15 @@ class Page4 extends Component {
       <div className="ui container">
         <h2 className="ui header center aligned">Help Us Get to Know You</h2>
         <div className="">
-        <h4 className="ui dividing header center aligned">We want to assist you in the growth of your business</h4>
-      {/* <PreviousInputs /> */}
+        <h4 className="ui dividing header center aligned">We want to assist in the growth of your business</h4>
 
       <div className="ui equal width form">
         <div className="inline fields">
-          <div className="field">
-            <label>How Many Buyer transactions have you personally closed in the last 12 months?</label>
-            <Field name="buyerTrans" component='input' type="number" className="small-input"/>
-          </div>
+          {/* <div className="field"> */}
+            <Field name="buyerTrans" type="number" label="How Many Buyer transactions have you personally closed in the last 12 months?"
+              component={smallField}   validate={required}
+             />
+          {/* </div> */}
         </div>
 
         <div className="ui form">

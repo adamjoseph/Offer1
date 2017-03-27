@@ -11,6 +11,12 @@ import labeledField from '../labeled_field';
 
 const selector = formValueSelector('Application');
 
+//Validation constants
+const required = value => value ? undefined : 'Required';
+const maxLength = max => value =>
+  value && value.length > max ? `Must be ${max} characters or less` : undefined
+const maxLength15 = maxLength(15)
+
 // const labeledCheckboxField = ({ input, label, type, info, meta: { touched, error, warning } }) => (
 //   <div className={`field ${touched && error ? 'error' : ''}`}>
 //     <label>{label}</label>
@@ -37,7 +43,7 @@ class Page3 extends Component {
             <div className="two fields">
               <Field name="brokerageName" type="text" label="Brokerage Name"
                 component={renderField}
-                validate=''
+                validate={[required, maxLength15]}
                 />
               <Field name="brokerageNum" type="text" label="Office BRE # or DRE #"
                 component={renderField}
@@ -88,7 +94,8 @@ class Page3 extends Component {
 
 
           <Link to="/page4">
-            <Button color="green" floated="right">Next</Button>
+            <Button color="green" floated="right"
+              className={invalid ? 'disabled' : ''}>Next</Button>
           </Link>
 
           <Link to="/page2">

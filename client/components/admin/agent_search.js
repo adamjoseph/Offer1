@@ -26,11 +26,7 @@ class AgentSearch extends Component {
     this.props.dispatch(clearAgent());
   }
 
-  getMoreAgents() {
-    //call function on admin page to increase subscription count
-    this.props.moreData();
 
-  }
 
   render() {
     const { handleSubmit } = this.props
@@ -60,8 +56,7 @@ class AgentSearch extends Component {
               onClick={() => this.clearSearchComponent()}>Clear</button>
           </div>
           <div className="field">
-            <button type="button" className="ui button"
-              onClick={() => this.getMoreAgents()}>More</button>
+            
           </div>
         </div>
       </form>

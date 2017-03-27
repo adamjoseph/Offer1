@@ -146,5 +146,8 @@ Meteor.publish('agents', function(agent_cap) {
   check(agent_cap, Number);
   if (Roles.userIsInRole( this.userId, 'admin' )){
     return Agents.find({}, { limit: agent_cap })
+  } else {
+    this.stop();
+    return
   }
 });

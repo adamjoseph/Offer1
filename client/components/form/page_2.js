@@ -11,7 +11,11 @@ import labeledField from '../labeled_field';
 
 //import requiredInput from './validate';
 
+//Validation constants
 const required = value => value ? undefined : 'Required';
+const maxLength = max => value =>
+  value && value.length > max ? `Must be ${max} characters or less` : undefined
+const maxLength15 = maxLength(15)
 
 
 class Page2 extends Component {
@@ -29,15 +33,14 @@ class Page2 extends Component {
           {/* <div className="fields"> */}
               <Field name="address" type="text" label="Address"
                 component={labeledField}
-                validate=''
+                validate={required}
                 info="Please input the address that best correlates to where you primarily list homes"
                />
 
               <Field name="city" type="text" label="City"
                 component={renderField}
-                validate=''
+                validate={required}
                />
-          {/* </div> */}
           <div className="two fields">
             <div className="field">
               <label>State</label>

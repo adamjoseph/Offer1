@@ -7,7 +7,11 @@ import AgentDetail from './agent_detail';
 
 class AgentList extends Component {
 
-  //dispatch functions get passed to agent details
+  getMoreAgents() {
+    //call function on admin page to increase subscription count
+    this.props.moreData();
+
+  }
 
   render() {
     if(this.props.loading) {
@@ -31,7 +35,10 @@ class AgentList extends Component {
 
           />
         )}
+        <button type="button" className="ui button agent-list-btn"
+          onClick={() => this.getMoreAgents()}>More</button>
       </div>
+
       </div>
     );
   }

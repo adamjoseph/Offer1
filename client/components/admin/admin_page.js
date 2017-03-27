@@ -4,6 +4,7 @@ import { createContainer, getMeteorData } from 'meteor/react-meteor-data';
 import { Agents } from '../../../imports/collections/agents';
 import { selectAgent, getAgents } from '../../actions/index';
 import { bindActionCreators, mapStateToProps, dispatch } from 'redux';
+import { browserHistory } from 'react-router';
 //import { connect } from 'react-redux';
 
 
@@ -20,7 +21,14 @@ const agentCount = new ReactiveVar(50);
 
 class AdminPage extends Component {
   componentWillMount() {
-    //Meteor.Call('publishAgents')
+    Roles.userIsInRole( Meteor.userId(), 'admin' ) ? ''
+    :
+    browserHistory.push('/');
+  }
+
+  componentWillUnmount() {
+    //this.props.stopSub();
+    console.log('sub stopped');
   }
 
   agentFilter(data) {
@@ -57,14 +65,18 @@ class AdminPage extends Component {
         <h1 className="ui dividing header center aligned">Adminstration Home</h1>
         <AgentSearch
           upperSearch={this.agentFilter.bind(this)} clearData={this.clearSearchFilter.bind(this)}
-          moreData={this.loadMore.bind(this)}
+
         />
         <div className="ui grid">
           <div className="ten wide column">
             <AgentInspect />
           </div>
           <div className="five wide column">
-            <AgentList agents={this.props.agents} loading={this.props.loading}/>
+            <AgentList
+              agents={this.props.agents}
+              loading={this.props.loading}
+              moreData={this.loadMore.bind(this)}
+            />
           </div>
         </div>
       </div>
@@ -77,6 +89,7 @@ export default createContainer(() => {
  const subscription = Meteor.subscribe('agents', agentCount.get());
  const loading = !subscription.ready();
  const agents = Agents.find(searcher.get()).fetch();
+ //const stopSub = subscription.stop();
  return { agents, loading };
 }, AdminPage);
 

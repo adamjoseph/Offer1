@@ -5,10 +5,18 @@ import { Form, Button } from 'semantic-ui-react';
 
 import renderField from '../render_field';
 
+
+
+//validation constants
+//import requiredInput from '../validate';
 const required = value => value ? undefined : 'Required';
 const email = value =>
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
-  'Invalid email address' : undefined
+  'Invalid email address' : undefined;
+const maxLength = max => value =>
+  value && value.length > max ? `Must be ${max} characters or less` : undefined
+const maxLength15 = maxLength(15)
+
 
 class Page1 extends Component {
   render() {
@@ -22,7 +30,7 @@ class Page1 extends Component {
             <div className="fields">
               <Field name="fname" type="text" label="First Name"
                 component={renderField}
-                validate=""
+                validate={[required, maxLength15]}
                 />
               <Field name="lname" type="text" label="Last Name"
                 component={renderField}

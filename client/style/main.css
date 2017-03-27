@@ -30,6 +30,10 @@
 .form-page {
   margin: 0px auto;
   max-width: 45%;
+  /*padding: 15px 15px;
+  border: 1px solid rgba(34, 36, 38, .15);
+  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15);
+  border-radius: .28571429rem;*/
 }
 
 .page-btn {

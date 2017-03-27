@@ -112,7 +112,8 @@ class Page3 extends Component {
 const FormPage3 = reduxForm({
   form: 'Application',
   fields: ['brokerageName', 'brokerageNum', 'sameNum', 'soloOrTeam', 'teamBuyAgents', 'teamListAgents', 'adminStaff' ],
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
+  initialValues: { 'soloOrTeam': 'solo'}
 })(Page3)
 
 

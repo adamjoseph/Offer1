@@ -9,13 +9,13 @@ class AgentDetail extends Component {
   approve(agent) {
     //agentClear passed down as props from agentList, sends dispatch
     this.props.agentClear();
-    Meteor.call('approveAgent', agent);
+    //Meteor.call('approveAgent', agent);
     //   Meteor.call('sendEmail',
     //           agent.agent.email,
     //           'ApplicationTeam@Offer1.com',
     //           'Welcome!',
     //           'Your Application to Offer1 has been accepted.');
-
+    Bert.alert('Agent Approved', 'success', 'growl-top-right');
    }
 
   reject(agent) {
@@ -26,7 +26,7 @@ class AgentDetail extends Component {
     //         'ApplicationTeam@Offer1.com',
     //         'Application Update',
     //         'Your Application to Offer1 has been rejected. Please review our requirements.');
-
+    Bert.alert('Agent Rejected', 'danger', 'growl-top-right');
   }
 
   hold(agent) {
@@ -38,6 +38,7 @@ class AgentDetail extends Component {
     //         'Application Update',
     //         'Your Application to Offer1 has been held. Please review our requirements
     //         and update your information.');
+    Bert.alert('Agent Held', 'warning', 'growl-top-right');
   }
 
   render() {

@@ -59,17 +59,33 @@ Meteor.startup(() => {
   //     });
   //   });
   // }//close if statement
+});//close Startup
 
-  // Meteor.publish('agents', function(agent_cap) {
-  //   check(agent_cap, Number);
-  //   if (Roles.userIsInRole( this.userId(), 'admin' )){
-  //     return Agents.find({}, { limit: agent_cap })
-  //   }
-  // });
+//set up schema for agent application submission
+Agents.schema = new SimpleSchema({
+  fname: {type: String},
+  lname: {type: String},
+  email: {type: String},
+  phone: {type: String},
+  address: {type: String},
+  city: {type: String},
+  usState: {type: String},
+  zip: {type: String},
+  personalNum: {type: String},
+  brokerageName: {type: String},
+  brokerageNum: {type: String},
+  buyerTrans: {type: Number},
+  listerTrans: {type: Number},
+  listAvg: {type: Number},
+  leadsPerMonth: {type: Number},
+  earlyAdopter: {type: Boolean},
+  openToNewMethods: {type: Boolean},
+  videoTestimony: {type: Boolean},
+  certifyTrue: {type: Boolean},
+  provideMls: {type: Boolean}
 });
 
 
-// In your server code: define a method that the client can call
 Meteor.methods({
   'sendEmail': function (to, from, subject, text) {
     check([to, from, subject, text], [String]);
@@ -88,6 +104,7 @@ Meteor.methods({
 Meteor.methods({
   'addAgent': function(agent) {
     //run any check functions
+    Agents.schema.validate(agent);
 
     Agents.insert({ agent, appStatus: 'hold', admin: false, reviewed: false });
   }
@@ -95,13 +112,13 @@ Meteor.methods({
 
 Meteor.methods({
   'approveAgent': function(agent) {
+    if(Roles.userIsInRole( this.userId, 'admin' )){
     Agents.update({ _id: agent._id }, { $set: { appStatus: 'approved', reviewed: true } });
-    console.log(this.userId);
+    // console.log(this.userId);
 
     const { fname, lname, email, phone, address, city, usState, zip, personalNum, brokerageName, brokerageNum } = agent.agent
 
     const profile = { fname, lname, phone, address, city, usState, zip, personalNum, brokerageName, brokerageNum }
-    //console.log(profile);
     try {
       const newUser = Accounts.createUser({
       email: email,
@@ -116,31 +133,34 @@ Meteor.methods({
       catch(error){
         return error
       }
-
-    console.log('account created');
-
+      console.log('account created');
+    }//close if statement
+    else {
+      throw new Meteor.Error('Unauthorized');
+    }
 
   }
 });//close approveAgent
 
 Meteor.methods({
   'rejectAgent': function(agent) {
-    Agents.update({ _id: agent._id }, { $set: { appStatus: 'rejected', reviewed: true } });
+    if(Roles.userIsInRole( this.userId, 'admin' )) {
+      Agents.update({ _id: agent._id }, { $set: { appStatus: 'rejected', reviewed: true } });
+    } else {
+      throw new Meteor.Error('Unauthorized');
+    }
   }
 });//close rejectAgent
 
 Meteor.methods({
   'holdAgent': function(agent) {
-    Agents.update({ _id: agent._id }, { $set: { reviewed: true } });
+    if(Roles.userIsInRole( this.userId, 'admin' )) {
+      Agents.update({ _id: agent._id }, { $set: { reviewed: true } });
+    } else {
+      throw new Meteor.Error('Unauthorized');
+    }
   }
 });//close holdAgent
-
-Meteor.methods({
-  'signIn': function() {
-    console.log(this.userId);
-    // return this.user
-  }
-});
 
 Meteor.publish('agents', function(agent_cap) {
   check(agent_cap, Number);
@@ -149,5 +169,16 @@ Meteor.publish('agents', function(agent_cap) {
   } else {
     this.stop();
     return
+  }
+});//close publish
+
+//test method not necessary
+Meteor.methods({
+  'signIn': function() {
+    if(Roles.userIsInRole( this.userId, 'admin' )){
+      Agents.insert({thisIsOkay: true})
+    } else {
+      throw new Meteor.Error('unauthorized', 'only admin can do this')
+    }
   }
 });

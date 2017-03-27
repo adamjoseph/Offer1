@@ -44,9 +44,9 @@ class AgentList extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { agents: state.agents };
-}
+// function mapStateToProps(state) {
+//   return { agents: state.agents };
+// }
 
 function mapDispatchToProps(dispatch) {
 
@@ -60,4 +60,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(AgentList);
+export default connect(null, mapDispatchToProps)(AgentList);

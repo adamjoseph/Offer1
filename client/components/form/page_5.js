@@ -3,6 +3,7 @@ import { Link, browserHistory } from 'react-router';
 import { Button } from 'semantic-ui-react';
 import { reduxForm, formValueSelector  } from 'redux-form';
 import { connect } from 'react-redux';
+import { dispatch } from 'redux';
 
 
 import PreviousInputs from '../previous_inputs';
@@ -13,19 +14,28 @@ class Page5 extends Component {
 
   onSubmit(props) {
     const agentEmail = props.email;
+      Meteor.call('addAgent', props, function(error){
+        if(error){
+          console.log('catch hit');
+          console.log(error);
+          Bert.alert( error + error.reason, 'danger' );
 
-    Meteor.call('addAgent', props);
-
-    // Meteor.call('sendEmail',
-    //         agentEmail,
-    //         'ApplicationTeam@Offer1.com',
-    //         'Thank You!',
-    //         'Thank you for applying to Offer1. An administrator will review your application.');
-    browserHistory.push('/thankyou');
-  }
+        } else {
+          console.log('success hit');
+          //clear the form inputs
+          this.props.dispatch(reset('Application'));
+          Meteor.call('sendEmail',
+                  agentEmail,
+                  'ApplicationTeam@Offer1.com',
+                  'Thank You!',
+                  'Thank you for applying to Offer1. An administrator will review your application.');
+          browserHistory.push('/thankyou');
+        }
+      });
+  }//close onSubmit
 
   render() {
-    const { handleSubmit, values } = this.props
+    const { handleSubmit, pristine } = this.props
     //console.log(this.props)
     return (
       <div className='ui container'>
@@ -89,7 +99,7 @@ class Page5 extends Component {
         </div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Button color="green" type="submit" floated="right"
-            >Finish</Button>
+            className={pristine ? 'disabled' : ''}>Finish</Button>
           <Link to="/page4">
             <Button color="red" floated="right" className="page-btn">Back</Button>
           </Link>

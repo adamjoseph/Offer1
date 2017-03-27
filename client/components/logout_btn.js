@@ -5,7 +5,7 @@ class Logout extends Component {
   logOut() {
     Meteor.logout();
     console.log('logged out');
-    browserHistory.push('/');
+    //browserHistory.push('/');
   }
 
   render() {

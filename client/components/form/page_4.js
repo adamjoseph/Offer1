@@ -11,6 +11,7 @@ const required = value => value ? undefined : 'Required';
  const maxLength = max => value =>
   value && value.length > max ? `Must be ${max} characters or less` : undefined
  const maxLength10 = maxLength(10);
+ const parse = value => value === undefined ? undefined : parseInt(value)
 
  const smallField = ({ input, label, type, meta: { touched, error } }) => (
    <div className={`field ${touched && error ? 'error' : ''}`}>
@@ -35,7 +36,7 @@ class Page4 extends Component {
         <div className="inline fields">
           {/* <div className="field"> */}
             <Field name="buyerTrans" type="number" label="How Many Buyer transactions have you personally closed in the last 12 months?"
-              component={smallField}   validate={required}
+              component={smallField}   validate={required} parse={parse}
              />
           {/* </div> */}
         </div>
@@ -44,7 +45,7 @@ class Page4 extends Component {
           <div className="inline fields">
             <div className="field">
               <label>How Many Listing transactions have you closed in the last 12 months?</label>
-              <Field name="listerTrans" component='input' type="number" className="small-input"/>
+              <Field name="listerTrans" component='input' type="number" className="small-input" parse={parse}/>
             </div>
           </div>
         </div>
@@ -53,7 +54,8 @@ class Page4 extends Component {
           <div className="inline fields">
             <div className="field">
               <label>How Many Listing transactions do you close on average per month?</label>
-              <Field name="listAvg" component='input' type="number" className="small-input"/>
+              <Field name="listAvg" component='input' type="number"
+                className="small-input" parse={parse}/>
             </div>
           </div>
         </div>
@@ -62,7 +64,7 @@ class Page4 extends Component {
           <div className="inline fields">
             <div className="field">
               <label>How many new listing leads (per month) do you think you would be able to comfortably and expertly manage?</label>
-              <Field name="leadsPerMonth" component='input' type="number" className="small-input"/>
+              <Field name="leadsPerMonth" component='input' type="number" className="small-input" parse={parse}/>
             </div>
           </div>
         </div>
@@ -109,7 +111,9 @@ class Page4 extends Component {
 FormPage4 = reduxForm({
   form: 'Application',
   fields: ['buyerTrans', 'listerTrans', 'listAvg', 'earlyAdopter', 'leadsPerMonth', 'openToNewMethods', 'videoTestimony', 'certifyTrue', 'provideMls'],
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
+  initialValues: {'earlyAdopter': false, 'openToNewMethods': false,
+    'videoTestimony': false}
 })(Page4)
 
 

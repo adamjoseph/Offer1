@@ -24,7 +24,7 @@ let ShowPreviousInputs = (props) => {
                 <p><strong>Phone:</strong> {phone}</p>
                 <p><strong>Email:</strong> {email}</p>
 
-                <Link to="/">Edit</Link>
+                <Link to="/page1">Edit</Link>
               </div>
             </div>
 

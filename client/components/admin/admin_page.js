@@ -27,8 +27,8 @@ class AdminPage extends Component {
   }
 
   componentWillUnmount() {
-    //this.props.stopSub();
     console.log('sub stopped');
+    this.props.subscription.stop();
   }
 
   agentFilter(data) {
@@ -90,7 +90,7 @@ export default createContainer(() => {
  const loading = !subscription.ready();
  const agents = Agents.find(searcher.get()).fetch();
  //const stopSub = subscription.stop();
- return { agents, loading };
+ return { agents, loading, subscription };
 }, AdminPage);
 
 // function mapStateToProps(state) {

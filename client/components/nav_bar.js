@@ -8,7 +8,7 @@ import Logout from './logout_btn';
 class NavBar extends Component {
 
   render() {
-
+    console.log('re-render');
     return (
       <div className="ui menu nav-bar" >
         <div className="header item">

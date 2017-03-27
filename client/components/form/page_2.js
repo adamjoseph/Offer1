@@ -64,7 +64,7 @@ class Page2 extends Component {
               <Button color="green" floated="right"
                 className={invalid ? 'disabled' : ''}>Next</Button>
             </Link>
-            <Link to="/">
+            <Link to="/page1">
               <Button color="red" floated="right">Back</Button>
             </Link>
           </div>

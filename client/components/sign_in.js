@@ -5,6 +5,7 @@ import { Field, reduxForm } from 'redux-form';
 
 
 class SignIn extends Component {
+
   onSubmit(props) {
     const { email, password } = props
     Meteor.loginWithPassword(email, password, function(error){
@@ -18,13 +19,6 @@ class SignIn extends Component {
     });
 
   }
-
-  signInResponse() {
-    console.log('success hit');
-    //Meteor.Call('signIn');
-    console.log(Meteor.user());
-  }
-
 render() {
   const { handleSubmit } = this.props;
 

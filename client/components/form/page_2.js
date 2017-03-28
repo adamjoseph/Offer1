@@ -39,7 +39,7 @@ class Page2 extends Component {
 
               <Field name="city" type="text" label="City"
                 component={renderField}
-                validate={required}
+                validate=''
                />
           <div className="two fields">
             <div className="field">

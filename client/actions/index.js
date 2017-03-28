@@ -10,14 +10,6 @@ export function selectAgent(agent) {
   }
 }
 
-// export function getAgents() {
-//   const request = axios.get('/allagents');
-//
-//   return {
-//     type: 'GET_AGENTS',
-//     payload: request
-//   }
-// }
 
 export function clearAgent() {
   return {
@@ -26,12 +18,11 @@ export function clearAgent() {
   }
 }
 
-// export function searchAgent(params) {
-//   const usState = params.state ? params.state : "";
-//   const agents = Agents.find({'agent.usState' : usState }).fetch();
-//   //const foundAgents = agents ? agents : null;
+// export function loginAgent() {
+//   const agent = Meteor.user();
+//   console.log('first hit');
 //   return {
-//     type: 'SEARCH_AGENT',
-//     payload: agents
+//     type: 'AGENT_LOGIN',
+//     payload: agent
 //   }
 // }

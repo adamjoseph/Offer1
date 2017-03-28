@@ -56,7 +56,7 @@ class AgentSearch extends Component {
               onClick={() => this.clearSearchComponent()}>Clear</button>
           </div>
           <div className="field">
-            
+
           </div>
         </div>
       </form>

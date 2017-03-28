@@ -1,0 +1,43 @@
+18:14:47.310 INFO - Launching a standalone Selenium Server
+18:14:47.340 INFO - Java: Oracle Corporation 25.121-b13
+18:14:47.340 INFO - OS: Mac OS X 10.12.3 x86_64
+18:14:47.349 INFO - v2.53.0, with Core v2.53.0. Built from revision 35ae25b
+18:14:47.404 INFO - Driver provider org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:
+registration capabilities Capabilities [{ensureCleanSession=true, browserName=internet explorer, version=, platform=WINDOWS}] does not match the current platform MAC
+18:14:47.404 INFO - Driver provider org.openqa.selenium.edge.EdgeDriver registration is skipped:
+registration capabilities Capabilities [{browserName=MicrosoftEdge, version=, platform=WINDOWS}] does not match the current platform MAC
+18:14:47.405 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+18:14:47.405 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered
+18:14:47.406 INFO - Driver class not found: org.openqa.selenium.htmlunit.HtmlUnitDriver
+18:14:47.406 INFO - Driver provider org.openqa.selenium.htmlunit.HtmlUnitDriver is not registered
+18:14:47.455 INFO - RemoteWebDriver instances should connect to: http://127.0.0.1:4444/wd/hub
+18:14:47.455 INFO - Selenium Server is up and running
+18:14:47.663 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, name=Login Spec, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+18:14:47.671 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, name=Login Spec, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.28.455517 (2c6d2707d8ea850c862f04ac066724273981e88f) on port 8968
+Only local connections are allowed.
+18:14:48.629 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, name=Login Spec, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+18:14:48.644 INFO - Executing: [get: localhost:3000/])
+18:14:50.321 INFO - Done: [get: localhost:3000/]
+18:14:50.331 INFO - Executing: [find elements: By.cssSelector: body])
+18:14:50.367 INFO - Done: [find elements: By.cssSelector: body]
+18:14:50.371 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (c117b5511a3e249abfaf2fdc2bcb3453)] -> css selector: body]])
+18:14:50.388 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (c117b5511a3e249abfaf2fdc2bcb3453)] -> css selector: body]]
+18:14:50.392 INFO - Executing: [get title])
+18:14:50.397 INFO - Done: [get title]
+18:14:50.402 INFO - Executing: [find element: By.cssSelector: input[name="email"]])
+18:14:50.420 INFO - Done: [find element: By.cssSelector: input[name="email"]]
+18:14:50.424 INFO - Executing: [send keys: 1 [[ChromeDriver: chrome on MAC (c117b5511a3e249abfaf2fdc2bcb3453)] -> css selector: input[name="email"]], [D, e, m, e, t, r, i, u, s, ., G, r, e, e, n, f, e, l, d, e, r, 2, 4, @, y, a, h, o, o, ., c, o, m]])
+18:14:50.593 INFO - Done: [send keys: 1 [[ChromeDriver: chrome on MAC (c117b5511a3e249abfaf2fdc2bcb3453)] -> css selector: input[name="email"]], [D, e, m, e, t, r, i, u, s, ., G, r, e, e, n, f, e, l, d, e, r, 2, 4, @, y, a, h, o, o, ., c, o, m]]
+18:14:50.597 INFO - Executing: [find element: By.cssSelector: input[name="password"]])
+18:14:50.618 INFO - Done: [find element: By.cssSelector: input[name="password"]]
+18:14:50.621 INFO - Executing: [send keys: 2 [[ChromeDriver: chrome on MAC (c117b5511a3e249abfaf2fdc2bcb3453)] -> css selector: input[name="password"]], [3, 0, 0]])
+18:14:50.676 INFO - Done: [send keys: 2 [[ChromeDriver: chrome on MAC (c117b5511a3e249abfaf2fdc2bcb3453)] -> css selector: input[name="password"]], [3, 0, 0]]
+18:14:50.679 INFO - Executing: [find element: By.cssSelector: button[type="submit"]])
+18:14:50.698 INFO - Done: [find element: By.cssSelector: button[type="submit"]]
+18:14:50.701 INFO - Executing: [click: 3 [[ChromeDriver: chrome on MAC (c117b5511a3e249abfaf2fdc2bcb3453)] -> css selector: button[type="submit"]]])
+18:14:50.758 INFO - Done: [click: 3 [[ChromeDriver: chrome on MAC (c117b5511a3e249abfaf2fdc2bcb3453)] -> css selector: button[type="submit"]]]
+18:14:51.772 INFO - Executing: [get current url])
+18:14:51.780 INFO - Done: [get current url]
+18:14:51.784 INFO - Executing: [delete session: f2b703d2-3c91-476c-839c-e87a4e204a8e])
+18:14:51.862 INFO - Done: [delete session: f2b703d2-3c91-476c-839c-e87a4e204a8e]

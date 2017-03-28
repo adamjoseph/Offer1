@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { Accounts } from 'meteor/accounts-base';
 
 import NavBar from './nav_bar';
 
 class App extends Component {
+  
+
   render() {
     return (
       <div>

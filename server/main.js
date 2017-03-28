@@ -59,6 +59,22 @@ Meteor.startup(() => {
   //     });
   //   });
   // }//close if statement
+
+  //set up email template
+  Accounts.urls.enrollAccount = function(token) {
+    return Meteor.absoluteUrl('enroll-account/' + token);
+  };
+  Accounts.emailTemplates.from = "Administrator <Team@Offer1.com>";
+  Accounts.emailTemplates.enrollAccount.subject = function(user) {
+    return (
+      'Congratulations ' + user.profile.fname + '! ' + 'Your Application has been Approved.'
+    );
+  };
+  Accounts.emailTemplates.enrollAccount.text = function(user, url) {
+    return (
+      "To set the password of your account, click the link below:\n\n" + url
+    );
+  }
 });//close Startup
 
 //set up schema for agent application submission
@@ -74,6 +90,7 @@ Agents.schema = new SimpleSchema({
   personalNum: {type: String},
   brokerageName: {type: String},
   brokerageNum: {type: String},
+  soloOrTeam: {type: String},
   buyerTrans: {type: Number},
   listerTrans: {type: Number},
   listAvg: {type: Number},
@@ -103,7 +120,7 @@ Meteor.methods({
 
 Meteor.methods({
   'addAgent': function(agent) {
-    //run any check functions
+    //check the data being sent in
     Agents.schema.validate(agent);
 
     Agents.insert({ agent, appStatus: 'hold', admin: false, reviewed: false });
@@ -114,22 +131,24 @@ Meteor.methods({
   'approveAgent': function(agent) {
     if(Roles.userIsInRole( this.userId, 'admin' )){
     Agents.update({ _id: agent._id }, { $set: { appStatus: 'approved', reviewed: true } });
-    // console.log(this.userId);
 
+    //pull agent details
     const { fname, lname, email, phone, address, city, usState, zip, personalNum, brokerageName, brokerageNum } = agent.agent
-
+    //construct profile object
     const profile = { fname, lname, phone, address, city, usState, zip, personalNum, brokerageName, brokerageNum }
     try {
       const newUser = Accounts.createUser({
       email: email,
-      password: phone,
+      password: Math.random().toString(36).slice(-5),
       profile: profile
       });
 
       if(newUser){
         Roles.addUsersToRoles( newUser, [ 'agent'] );
+        Accounts.sendEnrollmentEmail(newUser, email);
+        console.log('enrollment email sent');
       }
-    }
+    }//close try
       catch(error){
         return error
       }
@@ -141,6 +160,7 @@ Meteor.methods({
 
   }
 });//close approveAgent
+
 
 Meteor.methods({
   'rejectAgent': function(agent) {
@@ -171,14 +191,3 @@ Meteor.publish('agents', function(agent_cap) {
     return
   }
 });//close publish
-
-//test method not necessary
-Meteor.methods({
-  'signIn': function() {
-    if(Roles.userIsInRole( this.userId, 'admin' )){
-      Agents.insert({thisIsOkay: true})
-    } else {
-      throw new Meteor.Error('unauthorized', 'only admin can do this')
-    }
-  }
-});

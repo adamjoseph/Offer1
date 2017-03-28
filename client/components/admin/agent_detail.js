@@ -9,7 +9,7 @@ class AgentDetail extends Component {
   approve(agent) {
     //agentClear passed down as props from agentList, sends dispatch
     this.props.agentClear();
-    //Meteor.call('approveAgent', agent);
+    Meteor.call('approveAgent', agent);
     //   Meteor.call('sendEmail',
     //           agent.agent.email,
     //           'ApplicationTeam@Offer1.com',
@@ -20,7 +20,7 @@ class AgentDetail extends Component {
 
   reject(agent) {
     this.props.agentClear();
-    Meteor.call('rejectAgent', agent);
+    //Meteor.call('rejectAgent', agent);
     // Meteor.call('sendEmail',
     //         agent.agent.email,
     //         'ApplicationTeam@Offer1.com',
@@ -31,7 +31,7 @@ class AgentDetail extends Component {
 
   hold(agent) {
     this.props.agentClear();
-    Meteor.call('holdAgent', agent);
+    //Meteor.call('holdAgent', agent);
     // Meteor.call('sendEmail',
     //         agent.agent.email,
     //         'ApplicationTeam@Offer1.com',

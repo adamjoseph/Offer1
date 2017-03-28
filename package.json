@@ -2,7 +2,8 @@
   "name": "App",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "start": "meteor run",
+    "e2e": "node_modules/.bin/nightwatch --config tests/nightwatch.conf.BASIC.js"
   },
   "dependencies": {
     "axios": "^0.15.3",
@@ -21,5 +22,9 @@
     "redux-form": "^6.5.0",
     "redux-promise": "^0.5.3",
     "semantic-ui-react": "^0.67.1"
+  },
+  "devDependencies": {
+    "nightwatch": "^0.9.14",
+    "selenium-download": "^2.0.9"
   }
 }

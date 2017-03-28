@@ -11,6 +11,7 @@ import FormPage5 from '../components/form/page_5';
 import ThankYou from '../components/thank_you';
 import AdminPage from '../components/admin/admin_page';
 import AgentHome from '../components/agent_home';
+import SetPassword from '../components/set_password';
 
 export default (
   <Route path="/" component={App} >
@@ -23,5 +24,6 @@ export default (
     <Route path="/thankyou" component={ThankYou} />
     <Route path="/admin" component={AdminPage} />
     <Route path="/agent" component={AgentHome} />
+    <Route path="enroll-account/:token" component={SetPassword} />
   </Route>
 );

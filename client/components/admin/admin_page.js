@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Meteor } from 'meteor/meteor';
+//import { Meteor } from 'meteor/meteor';
 import { createContainer, getMeteorData } from 'meteor/react-meteor-data';
 import { Agents } from '../../../imports/collections/agents';
 import { selectAgent, getAgents } from '../../actions/index';
@@ -57,7 +57,7 @@ class AdminPage extends Component {
   render() {
     if(!this.props.agents) {
       return (
-        <div class="ui active centered inline loader"></div>
+        <div className="ui active centered inline loader"></div>
       );
     }
     return (

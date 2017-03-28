@@ -16,12 +16,10 @@ class Page5 extends Component {
     const agentEmail = props.email;
       Meteor.call('addAgent', props, function(error){
         if(error){
-          console.log('catch hit');
-          console.log(error);
+          //console.log(error);
           Bert.alert( error + error.reason, 'danger' );
 
         } else {
-          console.log('success hit');
           //clear the form inputs
           this.props.dispatch(reset('Application'));
           Meteor.call('sendEmail',

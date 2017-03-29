@@ -3,6 +3,9 @@ import { Link, browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
 //import { Meteor as meteor } from 'meteor/meteor';
 
+import signInField from './sign_in_field';
+
+const required = value => value ? undefined : 'Required';
 
 class SignIn extends Component {
 
@@ -10,7 +13,7 @@ class SignIn extends Component {
     const { email, password } = props
     Meteor.loginWithPassword(email, password, function(error){
       if(error) {
-        alert(error.reason);
+        Bert.alert(error.reason, 'danger', 'growl-top-right');
       } else if(Roles.userIsInRole( Meteor.userId(), 'admin' )){
         browserHistory.push('/admin');
       } else if(Roles.userIsInRole( Meteor.userId(), 'agent' )){
@@ -20,7 +23,7 @@ class SignIn extends Component {
 
   }
 render() {
-  const { handleSubmit } = this.props;
+  const { handleSubmit, invalid } = this.props;
 
   return(
     <div className="ui one column center aligned grid">
@@ -30,13 +33,16 @@ render() {
         </h2>
         <form className="ui form" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <div className="field">
-            <Field name="email" component="input" type="text" placeholder="Email" />
+            <Field name="email" type="text" label="Email"
+            component={signInField} validate={required}/>
           </div>
           <div className="field">
-            <Field name="password" component="input" type="password" placeholder="Password" />
+            <Field name="password" type="password" label="Password"
+              component={signInField} validate={required} />
           </div>
           <div className="field">
-            <button type="submit" className="ui button large fluid green" >Sign In</button>
+            <button type="submit"
+              className={invalid ? 'ui button disabled large fluid green' : 'ui button large fluid green'} >Sign In</button>
           </div>
           <div className="inline field">
 

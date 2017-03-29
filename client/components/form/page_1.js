@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
 import { Form, Button } from 'semantic-ui-react';
 
+//components
 import renderField from '../render_field';
 
 
@@ -28,22 +29,26 @@ class Page1 extends Component {
         <div className="form-page">
           <div className="ui equal width form">
             <div className="fields">
-              <Field name="fname" type="text" label="First Name"
+              <Field name="fname" type="text"
+                label="First Name" max="15"
                 component={renderField}
-                validate={[required, maxLength15]}
+                validate={required}
                 />
-              <Field name="lname" type="text" label="Last Name"
+              <Field name="lname" type="text"
+                label="Last Name" max="15"
                 component={renderField}
-                validate=""
+                validate={required}
                 />
             </div>
-            <Field name="email" type="email" label="Email"
+            <Field name="email" type="email"
+              label="Email" max="40"
               component={renderField}
-              validate=""
+              validate={[required, email]}
             />
-            <Field name="phone" type="text" label="Cell Phone"
+            <Field name="phone" type="text"
+              label="Cell Phone" max="20"
               component={renderField}
-              validate=""
+              validate={required}
              />
           </div>
           <div className="page-btn">
@@ -61,5 +66,6 @@ class Page1 extends Component {
 export default reduxForm({
   form: 'Application',
   fields: ['fname', 'lname', 'email', 'phone'],
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
+  initialValues: {'soloOrTeam': 'solo', 'brokerageName': 'N/A', 'brokerageNum': 'N/A', 'sameNum': false, 'teamBuyAgents': 0, 'teamListAgents': 0, 'adminStaff': 0, 'earlyAdopter': false, 'openToNewMethods': false, 'videoTestimony': false}
 })(Page1)

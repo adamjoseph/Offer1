@@ -10,7 +10,9 @@ class AgentHome extends Component {
   render() {
     if(!this.props.loggedInAgent){
       return (
-        <div className="ui active centered inline loader"></div>
+        <div>
+          <div className="ui active centered inline loader"></div>
+        </div>
       );
     }
     const { fname, lname } = this.props.loggedInAgent.profile;

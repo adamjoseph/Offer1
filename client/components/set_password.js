@@ -3,19 +3,23 @@ import { Link, browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
 import { Accounts } from 'meteor/accounts-base';
 
+import signInField from './sign_in_field';
+
+const required = value => value ? undefined : 'Required';
+
 class SetPassword extends Component {
   onSubmit(props){
     //console.log('event hit ', this.props.params.token);
     const token = this.props.params.token;
     const newPassword = props.password;
     Accounts.resetPassword(token, newPassword, function(){
-      console.log('success callback');
+      Bert.alert('Password Set', 'success', 'growl-top-right');
       browserHistory.push('/');
     })
   }
 
   render(){
-    const { handleSubmit } = this.props
+    const { handleSubmit, invalid } = this.props
     return(
       <div className="ui one column center aligned grid">
         <div className="column six wide form-holder">
@@ -24,10 +28,12 @@ class SetPassword extends Component {
           </h2>
           <form className="ui form" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
             <div className="field">
-              <Field name="password" component="input" type="password" placeholder="Password" />
+              <Field name="password"  type="password" label="Password"
+                component={signInField} validate={required}/>
             </div>
             <div className="field">
-              <button type="submit" className="ui button large fluid green" >Set Password</button>
+              <button type="submit"
+                className={invalid ? 'ui button disabled large fluid green' : 'ui button large fluid green'} >Set Password</button>
             </div>
             </form>
           </div>

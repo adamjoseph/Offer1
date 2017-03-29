@@ -8,6 +8,7 @@ import { dispatch } from 'redux';
 
 import PreviousInputs from '../previous_inputs';
 
+
 const selector = formValueSelector('Application');
 
 class Page5 extends Component {

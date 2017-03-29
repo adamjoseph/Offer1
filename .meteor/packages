@@ -24,3 +24,5 @@ practicalmeteor:faker
 alanning:roles
 aldeed:simple-schema
 themeteorchef:bert
+cfs:standard-packages
+cfs:gridfs

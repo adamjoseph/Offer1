@@ -41,11 +41,13 @@ class Page3 extends Component {
           <h4 className="ui dividing header center aligned">Page Three</h4>
           <div className="ui equal width form">
             <div className="two fields">
-              <Field name="brokerageName" type="text" label="Brokerage Name"
+              <Field name="brokerageName" type="text"
+                label="Brokerage Name" max="40"
                 component={renderField}
-                validate={[required, maxLength15]}
+                validate=''
                 />
-              <Field name="brokerageNum" type="text" label="Office BRE # or DRE #"
+              <Field name="brokerageNum" type="text"
+                label="Office BRE # or DRE #" max="20"
                 component={renderField}
                 validate='' />
               </div>
@@ -112,16 +114,12 @@ class Page3 extends Component {
 const FormPage3 = reduxForm({
   form: 'Application',
   fields: ['brokerageName', 'brokerageNum', 'sameNum', 'soloOrTeam', 'teamBuyAgents', 'teamListAgents', 'adminStaff' ],
-  destroyOnUnmount: false,
-  initialValues: { 'soloOrTeam': 'solo'}
+  destroyOnUnmount: false
 })(Page3)
 
 
-//export default FormPage3
-
 export default Page3Connect = connect(
   state => {
-    //const  email  = selector(state, 'email');
     const  solo  = selector(state, 'soloOrTeam');
     return { solo }
   }

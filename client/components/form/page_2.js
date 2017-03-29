@@ -1,9 +1,9 @@
+//import libraries/function
 import React, { Component } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import { Link } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
-//const { DOM: { input } } = React;
-// import validate from '../reducers/validate';
+
 //import components
 import StateSelect from '../state_select';
 import renderField from '../render_field';
@@ -30,33 +30,36 @@ class Page2 extends Component {
         <div className="form-page">
           <h4 className="ui dividing header center aligned">Page Two</h4>
         <div className="ui equal width form">
-          {/* <div className="fields"> */}
-              <Field name="address" type="text" label="Address"
-                component={labeledField}
-                validate={required}
-                info="Please input the address that best correlates to where you primarily list homes"
-               />
+            <Field name="address" type="text"
+              label="Address" max="50"
+              component={labeledField}
+              validate={required}
+              info="Please input the address that best correlates to where you primarily list homes"
+             />
 
-              <Field name="city" type="text" label="City"
-                component={renderField}
-                validate=''
-               />
+            <Field name="city" type="text"
+              label="City" max="30"
+              component={renderField}
+              validate={required}
+             />
           <div className="two fields">
             <div className="field">
               <label>State</label>
               <Field name="usState"
                 component={StateSelect}
-                validate=''
+                validate={required}
                />
             </div>
-              <Field name="zip" type="number" label="Zip"
+              <Field name="zip" type="number"
+                label="Zip" max="15"
                 component={renderField}
-                validate=''
+                validate={required}
               />
           </div>
-          <Field name="personalNum" type="text" label="Personal BRE # or DRE #"
+          <Field name="personalNum" type="text"
+            label="Personal BRE # or DRE #" max="20"
             component={renderField}
-            validate=''/>
+            validate={required}/>
           </div>
 
           <div className="page-btn">
@@ -68,7 +71,6 @@ class Page2 extends Component {
               <Button color="red" floated="right">Back</Button>
             </Link>
           </div>
-
         </div>
       </div>
       </form>

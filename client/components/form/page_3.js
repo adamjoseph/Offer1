@@ -4,36 +4,21 @@ import { Link } from 'react-router';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 
-import StateSelect from '../state_select';
-import TeamSelect from '../team_select';
-import renderField from '../render_field';
-import labeledField from '../labeled_field';
+import StateSelect from '../form_fields/state_select';
+import TeamSelect from '../form_fields/team_select';
+import renderField from '../form_fields/render_field';
+import labeledField from '../form_fields/labeled_field';
 
 const selector = formValueSelector('Application');
 
 //Validation constants
 const required = value => value ? undefined : 'Required';
-const maxLength = max => value =>
-  value && value.length > max ? `Must be ${max} characters or less` : undefined
-const maxLength15 = maxLength(15)
-
-// const labeledCheckboxField = ({ input, label, type, info, meta: { touched, error, warning } }) => (
-//   <div className={`field ${touched && error ? 'error' : ''}`}>
-//     <label>{label}</label>
-//     <div className=''>
-//       <input {...input} placeholder={label} type={type}/>
-//       <div className="ui pointing label">
-//         Same as Personal BRE # ? <span>  <input type="checkbox" /></span>
-//       </div>
-//     </div>
-//   </div>
-// )
+const parse = value => value === undefined ? undefined : parseInt(value)
 
 
 class Page3 extends Component {
   render() {
     const { invalid, solo } = this.props
-    //console.log(this.props);
     return (
       <div className="ui container">
         <h2 className="ui header center aligned">Company Information</h2>
@@ -62,6 +47,7 @@ class Page3 extends Component {
                 component={TeamSelect}
                 validate=''/>
             </div>
+            {/* start conditional inputs */}
             {solo === 'team' ?<div>
             <div className="inline field" >
               <div className="ui right pointing label">
@@ -69,7 +55,7 @@ class Page3 extends Component {
               </div>
               <Field name="teamBuyAgents" type='number'
                 component='input' className="small-input"
-                validate=''/>
+                validate='' parse={parse}/>
             </div>
 
             <div className="inline field" >
@@ -79,7 +65,7 @@ class Page3 extends Component {
               <Field
                 name="teamListAgents" type='number'
                 component='input' className="small-input"
-                type='number'/>
+                type='number' parse={parse}/>
             </div>
 
             <div className="inline field" >
@@ -89,12 +75,11 @@ class Page3 extends Component {
               <Field
                 name="adminStaff" type='number'
                 component='input' className="small-input"
-                type='number'/>
+                type='number' parse={parse}/>
             </div>
           </div>
             : <div></div>}
-
-
+          {/* end conditional inputs */}
           <Link to="/page4">
             <Button color="green" floated="right"
               className={invalid ? 'disabled' : ''}>Next</Button>

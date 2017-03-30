@@ -7,6 +7,7 @@ import { check, Match } from 'meteor/check';
 
 
 import  { Agents } from '../imports/collections/agents';
+import { Images } from '../imports/collections/images';
 import { Accounts } from 'meteor/accounts-base';
 
 
@@ -122,6 +123,7 @@ Meteor.methods({
   }
 });
 
+//checks schema, and adds agent application to database
 Meteor.methods({
   'addAgent': function(agent) {
     //check the data being sent in
@@ -129,8 +131,10 @@ Meteor.methods({
 
     Agents.insert({ agent, appStatus: 'hold', admin: false, reviewed: false });
   }
-});//close addAgent
+});
 
+//Updates agent application, creates user account, adds 'agent' role to account,
+//sends enrollment email
 Meteor.methods({
   'approveAgent': function(agent) {
     if(Roles.userIsInRole( this.userId, 'admin' )){
@@ -150,22 +154,19 @@ Meteor.methods({
       if(newUser){
         Roles.addUsersToRoles( newUser, [ 'agent'] );
         Accounts.sendEnrollmentEmail(newUser, email);
-        console.log('enrollment email sent');
       }
     }//close try
       catch(error){
         return error
       }
-      console.log('account created');
     }//close if statement
     else {
       throw new Meteor.Error('Unauthorized');
     }
-
   }
-});//close approveAgent
+});
 
-
+//Update agent application with rejected and reviewed
 Meteor.methods({
   'rejectAgent': function(agent) {
     if(Roles.userIsInRole( this.userId, 'admin' )) {
@@ -174,8 +175,9 @@ Meteor.methods({
       throw new Meteor.Error('Unauthorized');
     }
   }
-});//close rejectAgent
+});
 
+//update agent application to reviewed
 Meteor.methods({
   'holdAgent': function(agent) {
     if(Roles.userIsInRole( this.userId, 'admin' )) {
@@ -184,8 +186,9 @@ Meteor.methods({
       throw new Meteor.Error('Unauthorized');
     }
   }
-});//close holdAgent
+});
 
+//Publish agent data to Admin page, check if Admin is logged in
 Meteor.publish('agents', function(agent_cap) {
   check(agent_cap, Number);
   if (Roles.userIsInRole( this.userId, 'admin' )){
@@ -194,4 +197,22 @@ Meteor.publish('agents', function(agent_cap) {
     this.stop();
     return
   }
-});//close publish
+});
+
+Images.allow({
+    'insert': function() {
+        // add custom authentication code here
+        return true;
+    },
+    'update': function() {
+        // add custom authentication code here
+        return true;
+    },
+    'remove': function() {
+        // add custom authentication code here
+        return true;
+    },
+    download: function(userId, fileObj) {
+        return true
+    }
+});

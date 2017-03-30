@@ -1,9 +1,11 @@
+//import libraries
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { Grid, Image } from 'semantic-ui-react';
 import { Link } from 'react-router';
 
+//import components
 import PhotoDrop from './photo_drop';
 
 
@@ -51,6 +53,7 @@ ShowPreviousInputs = reduxForm({
 
 const selector = formValueSelector('Application');
 
+//connect with state to get previous inputs
 ShowPreviousInputs = connect(
   state => {
     const { fname, lname, phone, email, personalNum, address, city, usState, licenseState, zip, brokerageName, brokerageNum } = selector(state, 'fname', 'lname', 'phone', 'email', 'personalNum', 'address', 'city', 'usState', 'liceseState', 'zip', 'brokerageName', 'brokerageNum')

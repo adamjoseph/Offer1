@@ -3,10 +3,6 @@ import { browserHistory } from 'react-router';
 import { createContainer } from 'meteor/react-meteor-data';
 
 class AgentHome extends Component {
-  // componentWillMount() {
-  //
-  // }
-
   render() {
     if(!this.props.loggedInAgent){
       return (

@@ -1,15 +1,12 @@
+//import libraries
 import React, { Component, PropTypes } from 'react';
 import { Link, browserHistory } from 'react-router';
 import { Button } from 'semantic-ui-react';
-import { reduxForm, formValueSelector  } from 'redux-form';
-import { connect } from 'react-redux';
+import { reduxForm, reset } from 'redux-form';
 import { dispatch } from 'redux';
 
-
-import PreviousInputs from '../previous_inputs';
-
-
-const selector = formValueSelector('Application');
+//import components
+import PreviousInputs from '../form_fields/previous_inputs';
 
 class Page5 extends Component {
 
@@ -17,25 +14,24 @@ class Page5 extends Component {
     const agentEmail = props.email;
       Meteor.call('addAgent', props, function(error){
         if(error){
-          //console.log(error);
           Bert.alert( error + error.reason, 'danger' );
-
         } else {
-          //clear the form inputs
-          this.props.dispatch(reset('Application'));
           Meteor.call('sendEmail',
                   agentEmail,
                   'ApplicationTeam@Offer1.com',
                   'Thank You!',
                   'Thank you for applying to Offer1. An administrator will review your application.');
+          //direct to thank you page
           browserHistory.push('/thankyou');
-        }
+        }//close else
       });
+      //clear the form inputs
+      //this.props.dispatch(reset('Application'));
+
   }//close onSubmit
 
   render() {
     const { handleSubmit, pristine } = this.props
-    //console.log(this.props)
     return (
       <div className='ui container'>
         <h1 className='ui header center aligned'>Final Step for Agent Application</h1>
@@ -109,17 +105,7 @@ class Page5 extends Component {
 }
 
 
-FormPage5 = reduxForm({
+export default reduxForm({
   form: 'Application',
   destroyOnUnmount: false
 })(Page5)
-
-export default Page5Connect = connect(
-  state => {
-    //const  email  = selector(state, 'email');
-    const  values  = selector(state, 'values');
-    return { values }
-  }
-)(FormPage5)
-
-// className={invalid ? 'disabled' : ''}

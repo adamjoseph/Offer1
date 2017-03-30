@@ -1,24 +1,22 @@
+//import libraries
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Grid, Image, Button } from 'semantic-ui-react';
 import { Link } from 'react-router';
 
-import renderField from '../render_field';
+//import components
+import renderField from '../form_fields/render_field';
+import smallField from '../form_fields/small_field';
 
+//validation constants
 const required = value => value ? undefined : 'Required';
- const checked = value => value === true ? '' : 'Must Certify True';
- const parse = value => value === undefined ? undefined : parseInt(value)
- const smallField = ({ input, label, type, meta: { touched, error } }) => (
-   <div className={`field ${touched && error ? 'error' : ''}`}>
-     <label>{label}</label>
-       <input {...input} className="small-input" type={type}/>
-   </div>
- )
+const checked = value => value === true ? '' : 'Must Certify True';
+const parse = value => value === undefined ? undefined : parseInt(value)
+
+
 
 class Page4 extends Component {
-
-
   render() {
     const { invalid } = this.props
     return (

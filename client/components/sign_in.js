@@ -1,10 +1,12 @@
+//import Libraries
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
-//import { Meteor as meteor } from 'meteor/meteor';
 
+//import components
 import signInField from './sign_in_field';
 
+//validation constants
 const required = value => value ? undefined : 'Required';
 
 class SignIn extends Component {
@@ -57,5 +59,5 @@ render() {
 
 export default reduxForm({
   form: 'SignIn',
-  fields: ['email', 'password'],
+  fields: ['email', 'password']
 })(SignIn)

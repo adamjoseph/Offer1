@@ -1,33 +1,29 @@
 import React, { Component } from 'react';
-//import { Meteor } from 'meteor/meteor';
-import { createContainer, getMeteorData } from 'meteor/react-meteor-data';
+import { createContainer } from 'meteor/react-meteor-data';
 import { Agents } from '../../../imports/collections/agents';
-import { selectAgent, getAgents } from '../../actions/index';
-import { bindActionCreators, mapStateToProps, dispatch } from 'redux';
 import { browserHistory } from 'react-router';
-//import { connect } from 'react-redux';
 
 
 //import components
 import AgentList from './agent_list';
-//import AgentDetail from './agent_detail';
 import AgentInspect from './agent_inspect';
 import AgentSearch from './agent_search';
 
+//set initial values for Reactive variables
 const searcher = new ReactiveVar({'reviewed': false});
-
 const agentCount = new ReactiveVar(50);
 
 
 class AdminPage extends Component {
-  componentWillMount() {
-    Roles.userIsInRole( Meteor.userId(), 'admin' ) ? ''
-    :
-    browserHistory.push('/');
+  componentDidMount() {
+    //will check if admin is logged in: should find better solution
+     Meteor.setInterval(() => {
+       this.props.isAdmin ? '': browserHistory.push('/');
+     }, 5000)
   }
 
   componentWillUnmount() {
-    console.log('sub stopped');
+    // stop subscription when admin leaves page
     this.props.subscription.stop();
   }
 
@@ -38,7 +34,7 @@ class AdminPage extends Component {
     data.zip ? searchObj['agent.zip'] = data.zip : '';
     data.listYear ? searchObj['agent.listerTrans'] = { $gt: parseInt(data.listYear) } : '';
     data.listMonth ? searchObj['agent.listAvg'] = { $gt: parseInt(data.listMonth) } : '';
-    //console.log(searchObj)
+
     //Update search object to trigger data update
     searcher.set(searchObj);
    }
@@ -62,10 +58,9 @@ class AdminPage extends Component {
     }
     return (
       <div className="ui container">
-        <h1 className="ui dividing header center aligned">Adminstration Home</h1>
+        <h1 className="ui dividing header center aligned">Administration Home</h1>
         <AgentSearch
           upperSearch={this.agentFilter.bind(this)} clearData={this.clearSearchFilter.bind(this)}
-
         />
         <div className="ui grid">
           <div className="ten wide column">
@@ -89,23 +84,6 @@ export default createContainer(() => {
  const subscription = Meteor.subscribe('agents', agentCount.get());
  const loading = !subscription.ready();
  const agents = Agents.find(searcher.get()).fetch();
- //const stopSub = subscription.stop();
- return { agents, loading, subscription };
+ const isAdmin = Roles.userIsInRole( Meteor.userId(), 'admin' );
+ return { agents, loading, subscription, isAdmin };
 }, AdminPage);
-
-// function mapStateToProps(state) {
-//   return { agents: state.agents }
-// }
-//
-// function mapDispatchToProps(dispatch) {
-//
-//   const actions = {};
-//   const actionMap = {
-//     getAgents: bindActionCreators(getAgents, dispatch), dispatch};
-//
-//   return actionMap;
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(MeteorContainer);
-
-// export default connect(mapStateToProps, mapDispatchToProps)(AdminPage);

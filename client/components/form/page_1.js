@@ -4,19 +4,13 @@ import { Field, reduxForm } from 'redux-form';
 import { Form, Button } from 'semantic-ui-react';
 
 //components
-import renderField from '../render_field';
-
-
+import renderField from '../form_fields/render_field';
 
 //validation constants
-//import required from '../validate';
 const required = value => value ? undefined : 'Required';
 const email = value =>
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
   'Invalid email address' : undefined;
-const maxLength = max => value =>
-  value && value.length > max ? `Must be ${max} characters or less` : undefined
-const maxLength15 = maxLength(15)
 
 
 class Page1 extends Component {

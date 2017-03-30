@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { searchAgent, clearAgent } from '../../actions/index';
 import { Field, reduxForm, reset } from 'redux-form';
 
-import StateSelect from '../state_select';
+import StateSelect from '../form_fields/state_select';
 
 class AgentSearch extends Component {
   onSubmit(props) {
@@ -25,8 +25,6 @@ class AgentSearch extends Component {
     //clear any agent in the agent detail component
     this.props.dispatch(clearAgent());
   }
-
-
 
   render() {
     const { handleSubmit } = this.props
@@ -55,9 +53,6 @@ class AgentSearch extends Component {
             <button type="button" className="ui button"
               onClick={() => this.clearSearchComponent()}>Clear</button>
           </div>
-          <div className="field">
-
-          </div>
         </div>
       </form>
     );
@@ -68,16 +63,3 @@ export default  reduxForm({
  form: 'AgentSearch',
  fields: ['state', 'zip', 'listYear', 'listMonth']
 })(AgentSearch);
-
-// function mapDispatchToProps(dispatch) {
-//
-//   const actions = {};
-//   const actionMap = {
-//     searchAgent: bindActionCreators(searchAgent, dispatch), dispatch};
-//
-//   return actionMap;
-// }
-// AgentSearchForm =
-
-
-//export default connect(null, mapDispatchToProps)(AgentSearchForm);

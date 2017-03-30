@@ -1,16 +1,16 @@
+//import libraries
 import React, { Component } from 'react';
 import { selectAgent, clearAgent } from '../../actions/index';
 import { bindActionCreators, mapStateToProps, dispatch } from 'redux';
 import { connect } from 'react-redux';
 
+//import components
 import AgentDetail from './agent_detail';
 
 class AgentList extends Component {
-
   getMoreAgents() {
     //call function on admin page to increase subscription count
     this.props.moreData();
-
   }
 
   render() {
@@ -44,9 +44,6 @@ class AgentList extends Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   return { agents: state.agents };
-// }
 
 function mapDispatchToProps(dispatch) {
 

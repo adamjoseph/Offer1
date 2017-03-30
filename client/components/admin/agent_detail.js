@@ -9,12 +9,8 @@ class AgentDetail extends Component {
   approve(agent) {
     //agentClear passed down as props from agentList, sends dispatch
     this.props.agentClear();
+    //changes application status, creates user, sends email
     Meteor.call('approveAgent', agent);
-    //   Meteor.call('sendEmail',
-    //           agent.agent.email,
-    //           'ApplicationTeam@Offer1.com',
-    //           'Welcome!',
-    //           'Your Application to Offer1 has been accepted.');
     Bert.alert('Agent Approved', 'success', 'growl-top-right');
    }
 

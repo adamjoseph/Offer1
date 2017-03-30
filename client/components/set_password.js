@@ -9,7 +9,6 @@ const required = value => value ? undefined : 'Required';
 
 class SetPassword extends Component {
   onSubmit(props){
-    //console.log('event hit ', this.props.params.token);
     const token = this.props.params.token;
     const newPassword = props.password;
     Accounts.resetPassword(token, newPassword, function(){

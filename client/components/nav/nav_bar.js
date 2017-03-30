@@ -9,7 +9,6 @@ import Logout from './logout_btn';
 class NavBar extends Component {
 
   render() {
-    //console.log('re-render');
     return (
       <div className="ui menu nav-bar" >
         <div className="header item">
@@ -28,7 +27,7 @@ class NavBar extends Component {
   }
 }
 
-// export default NavBar
+//get UserId to chage Login => Logout
 export default createContainer(() => {
   const userId = Meteor.userId();
 

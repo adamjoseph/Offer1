@@ -5,23 +5,18 @@ import { Link } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
 
 //import components
-import StateSelect from '../state_select';
-import renderField from '../render_field';
-import labeledField from '../labeled_field';
+import StateSelect from '../form_fields/state_select';
+import renderField from '../form_fields/render_field';
+import labeledField from '../form_fields/labeled_field';
 
-//import requiredInput from './validate';
 
 //Validation constants
 const required = value => value ? undefined : 'Required';
-const maxLength = max => value =>
-  value && value.length > max ? `Must be ${max} characters or less` : undefined
-const maxLength15 = maxLength(15)
 
 
 class Page2 extends Component {
 
   render() {
-    //console.log(this.props)
     const { invalid } = this.props
     return (
       <form>
@@ -50,7 +45,7 @@ class Page2 extends Component {
                 validate={required}
                />
             </div>
-              <Field name="zip" type="number"
+              <Field name="zip" type="text"
                 label="Zip" max="15"
                 component={renderField}
                 validate={required}

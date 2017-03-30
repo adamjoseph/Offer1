@@ -15,7 +15,6 @@ const selector = formValueSelector('Application');
 const required = value => value ? undefined : 'Required';
 const parse = value => value === undefined ? undefined : parseInt(value)
 
-
 class Page3 extends Component {
   render() {
     const { invalid, solo } = this.props
@@ -57,7 +56,6 @@ class Page3 extends Component {
                 component='input' className="small-input"
                 validate='' parse={parse}/>
             </div>
-
             <div className="inline field" >
               <div className="ui right pointing label">
                 List Agents on your team including you
@@ -67,7 +65,6 @@ class Page3 extends Component {
                 component='input' className="small-input"
                 type='number' parse={parse}/>
             </div>
-
             <div className="inline field" >
               <div className="ui right pointing label">
                 Number of Administrative Staff
@@ -80,15 +77,13 @@ class Page3 extends Component {
           </div>
             : <div></div>}
           {/* end conditional inputs */}
-          <Link to="/page4">
+          <Link to="/register-survey">
           <button className={`ui right floated button
             ${invalid ? 'disabled' : 'green'}`}>Next</button>
           </Link>
-
-          <Link to="/page2">
+          <Link to="/register-address">
             <Button color="red" floated="right">Back</Button>
           </Link>
-
         </div>
         </div>
       </div>
@@ -101,7 +96,6 @@ const FormPage3 = reduxForm({
   fields: ['brokerageName', 'brokerageNum', 'sameNum', 'soloOrTeam', 'teamBuyAgents', 'teamListAgents', 'adminStaff' ],
   destroyOnUnmount: false
 })(Page3)
-
 
 export default Page3Connect = connect(
   state => {

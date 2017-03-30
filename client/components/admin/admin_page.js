@@ -3,7 +3,6 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Agents } from '../../../imports/collections/agents';
 import { browserHistory } from 'react-router';
 
-
 //import components
 import AgentList from './agent_list';
 import AgentInspect from './agent_inspect';
@@ -11,12 +10,11 @@ import AgentSearch from './agent_search';
 
 //set initial values for Reactive variables
 const searcher = new ReactiveVar({'reviewed': false});
-const agentCount = new ReactiveVar(50);
-
+const agentCount = new ReactiveVar(500);
 
 class AdminPage extends Component {
   componentDidMount() {
-    //will check if admin is logged in: should find better solution
+    //check if admin is logged in, redirect otherwise
      Meteor.setInterval(() => {
        this.props.isAdmin ? '': browserHistory.push('/');
      }, 5000)
@@ -63,15 +61,15 @@ class AdminPage extends Component {
           upperSearch={this.agentFilter.bind(this)} clearData={this.clearSearchFilter.bind(this)}
         />
         <div className="ui grid">
-          <div className="ten wide column">
-            <AgentInspect />
-          </div>
           <div className="five wide column">
             <AgentList
               agents={this.props.agents}
               loading={this.props.loading}
               moreData={this.loadMore.bind(this)}
             />
+          </div>
+          <div className="ten wide column">
+            <AgentInspect />
           </div>
         </div>
       </div>
@@ -85,5 +83,6 @@ export default createContainer(() => {
  const loading = !subscription.ready();
  const agents = Agents.find(searcher.get()).fetch();
  const isAdmin = Roles.userIsInRole( Meteor.userId(), 'admin' );
+ //return subsciption data to props
  return { agents, loading, subscription, isAdmin };
 }, AdminPage);

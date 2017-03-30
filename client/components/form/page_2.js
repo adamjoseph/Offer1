@@ -9,13 +9,10 @@ import StateSelect from '../fields/state_select';
 import renderField from '../fields/render_field';
 import labeledField from '../fields/labeled_field';
 
-
 //Validation constants
 const required = value => value ? undefined : 'Required';
 
-
 class Page2 extends Component {
-
   render() {
     const { invalid } = this.props
     return (
@@ -31,7 +28,6 @@ class Page2 extends Component {
               validate={required}
               info="Please input the address that best correlates to where you primarily list homes"
              />
-
             <Field name="city" type="text"
               label="City" max="30"
               component={renderField}
@@ -56,13 +52,12 @@ class Page2 extends Component {
             component={renderField}
             validate={required}/>
           </div>
-
           <div className="page-btn">
-            <Link to="/page3">
+            <Link to="/register-company-info">
               <button className={`ui right floated button
                 ${invalid ? 'disabled' : 'green'}`}>Next</button>
             </Link>
-            <Link to="/page1">
+            <Link to="/register-basic-info">
               <Button color="red" floated="right">Back</Button>
             </Link>
           </div>
@@ -72,8 +67,6 @@ class Page2 extends Component {
     );
   }
 }
-
-
 
 const FormPage2 = reduxForm({
   form: 'Application',

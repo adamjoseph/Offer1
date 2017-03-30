@@ -1,7 +1,23 @@
 /* CSS declarations go here */
+
+/**********************
+Agent List
+**********************/
 .ui.cards {
   overflow: auto;
   max-height: 400px;
+}
+
+.agent-list-btn {
+  margin-top: 15px;
+  margin-left: 7px !important;
+}
+
+#agent-list-header {
+  padding: 4px 4px;
+  border-radius: .28571429rem;
+  background-color: rgba(224, 225, 226, 0.3);
+  max-width: 290px;
 }
 
 .agent-inspect-left {
@@ -13,6 +29,9 @@
   margin-left: 15px;
 }
 
+/**********************
+Form Pages
+**********************/
 .prof-pic {
   max-height: 120px;
   max-width: 100px;
@@ -30,11 +49,6 @@
 
 .page-btn {
   margin-top: 15px;
-}
-
-.agent-list-btn {
-  margin-top: 15px;
-  margin-left: 7px !important;
 }
 
 .small-input {
@@ -56,6 +70,23 @@
   margin-bottom: 20px;
 }
 
+.dropzone {
+  width: 0px;
+  height: 0px;
+}
+
+.page5-btm-segment{
+  min-height: 288px;
+}
+
+.page5-top-segment{
+  min-height: 214px;
+}
+
+/**********************
+Agent Search Bar
+**********************/
+
 .search-bar {
   padding-top: 15px;
   padding-bottom: 5px;
@@ -68,17 +99,4 @@
 
 .nav-bar {
   height: 75px;
-}
-
-.dropzone {
-  width: 0px;
-  height: 0px;
-}
-
-.page5-btm-segment{
-  min-height: 288px;
-}
-
-.page5-top-segment{
-  min-height: 214px;
 }

@@ -8,7 +8,7 @@ import { Link } from 'react-router';
 //import components
 import PhotoDrop from './photo_drop';
 
-
+//field is used on form/page5
 let ShowPreviousInputs = (props) => {
   const { fname, lname, phone, email, personalNum, address, city, usState, licenseState, zip, brokerageName, brokerageNum } = props
 
@@ -16,7 +16,6 @@ let ShowPreviousInputs = (props) => {
       <div className='' >
         <h2 className="ui header center aligned">Confirm Info</h2>
           <div className="ui stackable three column grid">
-
             <div className="column">
               <div className="ui segment">
                 <p><strong>Name:</strong> {fname} {lname}</p>
@@ -24,17 +23,16 @@ let ShowPreviousInputs = (props) => {
                 <p>{city}, {usState} {zip}</p>
                 <p><strong>Phone:</strong> {phone}</p>
                 <p><strong>Email:</strong> {email}</p>
-                <Link to="/page1">Edit</Link>
+                <Link to="/register-basic-info">Edit</Link>
               </div>
             </div>
-
             <div className="column">
               <div className="ui segment page5-top-segment">
                 <p><strong>License State:</strong> {usState}</p>
                 <p><strong>Personal DRE #:</strong> {personalNum}</p>
                 <p><strong>Brokerage Name:</strong> {brokerageName}</p>
                 <p><strong>Brokerage DRE #:</strong> {brokerageNum}</p>
-                <Link to="/page2">Edit</Link>
+                <Link to="/register-address">Edit</Link>
               </div>
             </div>
             <PhotoDrop />
@@ -42,7 +40,6 @@ let ShowPreviousInputs = (props) => {
       </div>
     );
 }
-
 
 ShowPreviousInputs = reduxForm({
   form: 'Application',
@@ -60,6 +57,5 @@ ShowPreviousInputs = connect(
     }
   }
 )(ShowPreviousInputs)
-
 
 export default ShowPreviousInputs

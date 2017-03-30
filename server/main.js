@@ -4,17 +4,13 @@ import { check, Match } from 'meteor/check';
 
 import mailUrl from './config';
 
-
 import  { Agents } from '../imports/collections/agents';
 import { Images } from '../imports/collections/images';
 import { Accounts } from 'meteor/accounts-base';
 
-
-
 Meteor.startup(() => {
   // code to run on server at startup
   process.env.MAIL_URL = mailUrl.mailUrl;
-
 
   //send daily email to admin w/number of applicants
   // Meteor.setInterval(() => {
@@ -26,39 +22,6 @@ Meteor.startup(() => {
   //     text: 'Number of Applicants in Database: ' + applications
   //   });
   // }, 86400000)
-  //set up fake agent applications
-  // const numberAgents = Agents.find({}).count();
-  // if (numberAgents < 10) {
-  //   // Generate some data...
-  //   _.times(500, () => {
-  //
-  //     Agents.insert({
-  //       "appStatus" : 'hold',
-  //       "admin" : false,
-  //       "reviewed" : false,
-  //       "agent" : {
-  //         "fname" : faker.name.firstName(),
-  //         "lname" : faker.name.lastName(),
-  //         "email" : faker.internet.email(),
-  //         "phone" : faker.phone.phoneNumberFormat(),
-  //         "address": faker.random.number(15) + " " + faker.address.streetName(),
-  //         "city" : faker.address.city(),
-  //         "usState" : faker.address.stateAbbr(),
-  //         "zip" : faker.address.zipCode(),
-  //         "personalNum" : faker.random.number(10000).toString(),
-  //         "brokerageName" : faker.company.companyName(),
-  //         "brokerageNum" : faker.random.number(10000).toString(),
-  //         "buyerTrans" : faker.random.number(200),
-  //         "listerTrans" : faker.random.number(200),
-  //         "listAvg" : faker.random.number(30),
-  //         "leadsPerMonth" : faker.random.number(25),
-  //         "earlyAdopter" : faker.random.boolean(),
-  //         "openToNewMethods" : faker.random.boolean(),
-  //         "videoTestimony" : faker.random.boolean()
-  //       }
-  //     });
-  //   });
-  // }//close if statement
 
   //set up email template
   Accounts.urls.enrollAccount = function(token) {
@@ -106,7 +69,6 @@ Agents.schema = new SimpleSchema({
   provideMls: {type: Boolean}
 });
 
-
 Meteor.methods({
   'sendEmail': function (to, from, subject, text) {
     check([to, from, subject, text], [String]);
@@ -127,8 +89,8 @@ Meteor.methods({
   'addAgent': function(agent) {
     //check the data being sent in
     Agents.schema.validate(agent);
-
-    Agents.insert({ agent, appStatus: 'hold', admin: false, reviewed: false });
+    //if schema check passes, insert agent application to collection
+    Agents.insert({ agent, appStatus: 'hold', createdAt: new Date(), reviewed: false });
   }
 });
 
@@ -176,7 +138,7 @@ Meteor.methods({
   }
 });
 
-//update agent application to reviewed
+//update agent application to reviewed, status still equals 'hold'
 Meteor.methods({
   'holdAgent': function(agent) {
     if(Roles.userIsInRole( this.userId, 'admin' )) {

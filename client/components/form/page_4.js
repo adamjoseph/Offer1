@@ -14,8 +14,6 @@ const required = value => value ? undefined : 'Required';
 const checked = value => value === true ? '' : 'Must Certify True';
 const parse = value => value === undefined ? undefined : parseInt(value)
 
-
-
 class Page4 extends Component {
   render() {
     const { invalid } = this.props
@@ -24,7 +22,6 @@ class Page4 extends Component {
         <h2 className="ui header center aligned">Help Us Get to Know You</h2>
         <div className="">
         <h4 className="ui dividing header center aligned">We want to assist in the growth of your business</h4>
-
       <div className="ui equal width form">
         <div className="inline fields">
             <Field name="buyerTrans" type="number"
@@ -32,7 +29,6 @@ class Page4 extends Component {
               component={smallField} validate={required} parse={parse}
              />
         </div>
-
         <div className="ui form">
           <div className="inline fields">
               <Field name="listerTrans"  type="number"
@@ -41,7 +37,6 @@ class Page4 extends Component {
                />
           </div>
         </div>
-
         <div className="ui form">
           <div className="inline fields">
               <Field name="listAvg" type="number"
@@ -49,7 +44,6 @@ class Page4 extends Component {
                 component={smallField} validate={required} parse={parse}/>
           </div>
         </div>
-
         <div className="ui form">
           <div className="inline fields">
               <Field name="leadsPerMonth" type="number"
@@ -61,34 +55,29 @@ class Page4 extends Component {
           <Field  name="earlyAdopter" component="input" type='checkbox'/>
           <label >Are you comfortable being an early adopter of technology?</label>
         </div>
-
         <div className="ui checkbox survey-question">
           <Field name="openToNewMethods" component="input" type='checkbox'/>
           <label>Are you open to trying new methods of listing if it helps you sell homes faster, at a higher price, and with greater costumer satisfaction?</label>
         </div>
-
         <div className="ui checkbox survey-question">
           <Field name="videoTestimony" component="input" type='checkbox'/>
           <label>If your application is accepted, and Offer1 saves you time and money while better serving your client, will you provide us a video testimony?</label>
         </div>
-
         <div className="ui checkbox survey-question">
           <Field name="certifyTrue" component="input" type='checkbox' validate={checked} />
           <label>* I certify all of my above answers to be accurate and true to the best of my knowledge.</label>
         </div>
-
         <div className="ui checkbox final-survey-question">
           <Field name="provideMls" component="input" type='checkbox' validate={checked} />
           <label><strong>* I agree to provide a copy of my MLS YTD production report upon request</strong></label>
         </div>
       </div>
       <p>* Required</p>
-        <Link to="/page5">
+        <Link to="/register-confirm">
           <button className={`ui right floated button
             ${invalid ? 'disabled' : 'green'}`}>Next</button>
         </Link>
-
-        <Link to="/page3">
+        <Link to="/register-company-info">
           <Button color="red" floated="right">Back</Button>
         </Link>
       </div>
@@ -97,12 +86,10 @@ class Page4 extends Component {
   }
 }
 
-
 FormPage4 = reduxForm({
   form: 'Application',
   fields: ['buyerTrans', 'listerTrans', 'listAvg', 'earlyAdopter', 'leadsPerMonth', 'openToNewMethods', 'videoTestimony', 'certifyTrue', 'provideMls'],
   destroyOnUnmount: false
 })(Page4)
-
 
 export default FormPage4

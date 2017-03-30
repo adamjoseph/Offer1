@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Image } from 'semantic-ui-react';
 import Dropzone from 'react-dropzone';
 
+//field used on previous_inputs
 class PhotoDrop extends Component {
   onDrop(accpetedFiles, rejectedFiles) {
     console.log('Accepted Files: ', acceptedFiles);
@@ -35,11 +36,3 @@ class PhotoDrop extends Component {
 }
 
 export default PhotoDrop
-
-{/* <button className="small ui button">
-  Add Photo
-</button> */}
-
-{/* <Dropzone onDrop={this.handleUpload} multiple={false}>
-  <div>Add Photo</div>
-</Dropzone> */}

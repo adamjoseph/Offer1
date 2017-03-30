@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
 
+//field is used on form/page3
 export default class TeamSelect extends Component {
 
   render() {

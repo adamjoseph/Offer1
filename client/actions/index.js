@@ -5,7 +5,6 @@ export function selectAgent(agent) {
   }
 }
 
-
 export function clearAgent() {
   return {
     type: 'CLEAR_AGENT',

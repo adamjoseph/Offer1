@@ -17,17 +17,17 @@ class AgentDetail extends Component {
   reject(agent) {
     this.props.agentClear();
     Meteor.call('rejectAgent', agent);
-    Meteor.call('sendEmail',
-            agent.agent.email,
-            'ApplicationTeam@Offer1.com',
-            'Application Update',
-            'Your Application to Offer1 has been rejected. Please review our requirements.');
+    // Meteor.call('sendEmail',
+    //         agent.agent.email,
+    //         'ApplicationTeam@Offer1.com',
+    //         'Application Update',
+    //         'Your Application to Offer1 has been rejected. Please review our requirements.');
     Bert.alert('Agent Rejected', 'danger', 'growl-top-right');
   }
 
   hold(agent) {
     this.props.agentClear();
-    //Meteor.call('holdAgent', agent);
+    Meteor.call('holdAgent', agent);
     // Meteor.call('sendEmail',
     //         agent.agent.email,
     //         'ApplicationTeam@Offer1.com',
@@ -43,7 +43,7 @@ class AgentDetail extends Component {
   return (
     <div className="card" >
       <div className="content" onClick={() => this.props.clickHandler(this.props.agent.agent)}>
-        {/* Place Image tag here */}
+        {/* Place Image tag here (once images are stored in db) */}
         <div className="header">
           {fname} {lname}
         </div>
@@ -57,7 +57,7 @@ class AgentDetail extends Component {
       <div className="extra content">
         <div className="ui buttons">
           <button
-            className="ui basic green button"
+            className="ui basic green button "
             onClick={() => this.approve(agent)}>Approve</button>
           <button
             className="compact ui basic yellow button"
@@ -71,6 +71,5 @@ class AgentDetail extends Component {
   );
   }
 };
-
 
 export default AgentDetail

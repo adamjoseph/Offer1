@@ -9,7 +9,6 @@ import { dispatch } from 'redux';
 import PreviousInputs from '../fields/previous_inputs';
 
 class Page5 extends Component {
-
   onSubmit(props) {
     const agentEmail = props.email;
       Meteor.call('addAgent', props, function(error){
@@ -23,11 +22,10 @@ class Page5 extends Component {
                   'Thank you for applying to Offer1. An administrator will review your application.');
           //direct to thank you page
           browserHistory.push('/thankyou');
-        }//close else
+        }
       });
       //clear the form inputs
       //this.props.dispatch(reset('Application'));
-
   }//close onSubmit
 
   render() {
@@ -92,7 +90,7 @@ class Page5 extends Component {
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="page-btn">
           <button type="submit" className={`ui right floated button
             ${pristine ? 'disabled' : 'green'}`}>Finish</button>
-          <Link to="/page4">
+          <Link to="/register-survey">
             <Button color="red" floated="right">Back</Button>
           </Link>
         </form>
@@ -100,7 +98,6 @@ class Page5 extends Component {
     );
   }
 }
-
 
 export default reduxForm({
   form: 'Application',

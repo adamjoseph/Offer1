@@ -1,5 +1,6 @@
 import React from 'react';
 
+//this field used on form/page2
 const labeledField = ({ input, label, type, max, info, meta: { touched, error, warning } }) => (
   <div className={`field ${touched && error ? 'error' : ''}`}>
     <label>{label}</label>

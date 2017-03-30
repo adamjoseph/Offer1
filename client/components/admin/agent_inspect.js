@@ -6,13 +6,12 @@ const AgentInspect = (props) => {
   if (!props.selectedAgent){
     return (
       <div>
-      <h4 className="ui header center aligned">Select an Agent</h4>
+      <h4 className="ui header center aligned">Agent Details Appear Here</h4>
     </div>
     );
   }
   else {
     const { address, brokerageName, brokerageNum, buyerTrans, city, earlyAdopter, email, fname, leadsPerMonth, licenseState, listAvg, listerTrans, lname, openToNewMethods, personalNum, phone, usState, videoTestimony, zip } = props.selectedAgent
-
 
     return (
       <div className="agent-inspect-left">

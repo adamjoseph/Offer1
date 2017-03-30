@@ -26,8 +26,8 @@ class AgentList extends Component {
     }
     return (
       <div className="agent-list">
+        <h4 id="agent-list-header" className="ui center aligned header">Click An Agent to View Details</h4>
       <div className="ui cards">
-
         {this.props.agents.map(agent =>
           <AgentDetail key={agent._id}
             agent={agent} clickHandler={this.props.selectAgent}
@@ -44,7 +44,6 @@ class AgentList extends Component {
   }
 }
 
-
 function mapDispatchToProps(dispatch) {
 
   const actions = {};
@@ -55,6 +54,5 @@ function mapDispatchToProps(dispatch) {
 
   return actionMap;
 }
-
 
 export default connect(null, mapDispatchToProps)(AgentList);

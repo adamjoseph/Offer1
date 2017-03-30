@@ -28,7 +28,6 @@ class AgentSearch extends Component {
 
   render() {
     const { handleSubmit } = this.props
-
     return (
       <form className="ui fluid form search-bar" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <div className="inline fields">

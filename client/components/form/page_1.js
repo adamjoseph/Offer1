@@ -12,7 +12,6 @@ const email = value =>
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
   'Invalid email address' : undefined;
 
-
 class Page1 extends Component {
   render() {
     const { invalid } = this.props
@@ -46,7 +45,7 @@ class Page1 extends Component {
              />
           </div>
           <div className="page-btn">
-            <Link to="/page2" >
+            <Link to="/register-address" >
               <button
                 className={`ui right floated button ${invalid ? 'disabled' : 'green'}`}>Next</button>
             </Link>

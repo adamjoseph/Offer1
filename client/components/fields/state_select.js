@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
 
+//field is used on form/page2, and admin/agent_search
 export default class StateSelect extends Component {
   render() {
     const { input } = this.props

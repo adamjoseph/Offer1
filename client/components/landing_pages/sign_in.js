@@ -4,7 +4,7 @@ import { Link, browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
 
 //import components
-import signInField from './fields/sign_in_field';
+import signInField from '../fields/sign_in_field';
 
 //validation constants
 const required = value => value ? undefined : 'Required';
@@ -48,9 +48,7 @@ render() {
               className={`ui button large fluid ${invalid ? 'disabled' : 'green'}`} >Sign In</button>
           </div>
           <div className="inline field">
-
-
-            </div>
+          </div>
           </form>
         </div>
       </div>

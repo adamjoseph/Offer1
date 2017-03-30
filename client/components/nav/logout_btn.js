@@ -11,7 +11,7 @@ class Logout extends Component {
   render() {
     return (
       <div className="link item" onClick={this.logOut}>
-      <Link to='/' > Logout </Link>
+      <Link to='/' > Sign Out </Link>
       </div>
     );
   }

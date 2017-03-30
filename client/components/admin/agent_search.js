@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { searchAgent, clearAgent } from '../../actions/index';
 import { Field, reduxForm, reset } from 'redux-form';
 
-import StateSelect from '../form_fields/state_select';
+import StateSelect from '../fields/state_select';
 
 class AgentSearch extends Component {
   onSubmit(props) {
@@ -47,10 +47,10 @@ class AgentSearch extends Component {
             <Field name="listMonth" component="input" type="number" placeholder="Listings Per Month"/>
           </div>
           <div className="field">
-            <button type="submit" className="ui button">Search</button>
+            <button type="submit" className="ui blue button">Search</button>
           </div>
           <div className="field">
-            <button type="button" className="ui button"
+            <button type="button" className="ui blue button"
               onClick={() => this.clearSearchComponent()}>Clear</button>
           </div>
         </div>

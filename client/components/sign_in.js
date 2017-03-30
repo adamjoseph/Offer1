@@ -4,10 +4,13 @@ import { Link, browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
 
 //import components
-import signInField from './sign_in_field';
+import signInField from './fields/sign_in_field';
 
 //validation constants
 const required = value => value ? undefined : 'Required';
+const email = value =>
+  value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
+  'Invalid email address' : undefined;
 
 class SignIn extends Component {
 
@@ -15,7 +18,7 @@ class SignIn extends Component {
     const { email, password } = props
     Meteor.loginWithPassword(email, password, function(error){
       if(error) {
-        Bert.alert(error.reason, 'danger', 'growl-top-right');
+        Bert.alert("Incorrect Username or Password", 'danger', 'growl-top-right');
       } else if(Roles.userIsInRole( Meteor.userId(), 'admin' )){
         browserHistory.push('/admin');
       } else if(Roles.userIsInRole( Meteor.userId(), 'agent' )){
@@ -30,13 +33,11 @@ render() {
   return(
     <div className="ui one column center aligned grid">
       <div className="column six wide form-holder">
-        <h2 className="center aligned header form-head"
-          >Sign in or <Link to="/page1">Register</Link>
-        </h2>
+        <h2 className="center aligned header form-head">Sign In</h2>
         <form className="ui form" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <div className="field">
             <Field name="email" type="text" label="Email"
-            component={signInField} validate={required}/>
+            component={signInField} validate={[required, email]}/>
           </div>
           <div className="field">
             <Field name="password" type="password" label="Password"
@@ -44,7 +45,7 @@ render() {
           </div>
           <div className="field">
             <button type="submit"
-              className={invalid ? 'ui button disabled large fluid green' : 'ui button large fluid green'} >Sign In</button>
+              className={`ui button large fluid ${invalid ? 'disabled' : 'green'}`} >Sign In</button>
           </div>
           <div className="inline field">
 

@@ -19,6 +19,9 @@ class NavBar extends Component {
         <div className="link item" >Agents</div>
         <div className="link item" >Transaction Vendors</div>
         <div className="link item" >How It Works</div>
+        <Link to="/page1" className="link item">
+          <div>Agent Application</div>
+        </Link>
         <div className="right menu" >
           {this.props.userId ? <Logout /> : <Login />}
         </div>

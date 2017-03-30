@@ -5,9 +5,9 @@ import { Link } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
 
 //import components
-import StateSelect from '../form_fields/state_select';
-import renderField from '../form_fields/render_field';
-import labeledField from '../form_fields/labeled_field';
+import StateSelect from '../fields/state_select';
+import renderField from '../fields/render_field';
+import labeledField from '../fields/labeled_field';
 
 
 //Validation constants
@@ -59,8 +59,8 @@ class Page2 extends Component {
 
           <div className="page-btn">
             <Link to="/page3">
-              <Button color="green" floated="right"
-                className={invalid ? 'disabled' : ''}>Next</Button>
+              <button className={`ui right floated button
+                ${invalid ? 'disabled' : 'green'}`}>Next</button>
             </Link>
             <Link to="/page1">
               <Button color="red" floated="right">Back</Button>

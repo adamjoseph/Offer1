@@ -16,12 +16,12 @@ class AgentDetail extends Component {
 
   reject(agent) {
     this.props.agentClear();
-    //Meteor.call('rejectAgent', agent);
-    // Meteor.call('sendEmail',
-    //         agent.agent.email,
-    //         'ApplicationTeam@Offer1.com',
-    //         'Application Update',
-    //         'Your Application to Offer1 has been rejected. Please review our requirements.');
+    Meteor.call('rejectAgent', agent);
+    Meteor.call('sendEmail',
+            agent.agent.email,
+            'ApplicationTeam@Offer1.com',
+            'Application Update',
+            'Your Application to Offer1 has been rejected. Please review our requirements.');
     Bert.alert('Agent Rejected', 'danger', 'growl-top-right');
   }
 

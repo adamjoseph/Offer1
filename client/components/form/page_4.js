@@ -6,8 +6,8 @@ import { Grid, Image, Button } from 'semantic-ui-react';
 import { Link } from 'react-router';
 
 //import components
-import renderField from '../form_fields/render_field';
-import smallField from '../form_fields/small_field';
+import renderField from '../fields/render_field';
+import smallField from '../fields/small_field';
 
 //validation constants
 const required = value => value ? undefined : 'Required';
@@ -64,27 +64,28 @@ class Page4 extends Component {
 
         <div className="ui checkbox survey-question">
           <Field name="openToNewMethods" component="input" type='checkbox'/>
-          <label>Are you open to trying new methods of listing if it helps you sell homes faster, at a higher price, and with greater consumer satisfaction?</label>
+          <label>Are you open to trying new methods of listing if it helps you sell homes faster, at a higher price, and with greater costumer satisfaction?</label>
         </div>
 
         <div className="ui checkbox survey-question">
           <Field name="videoTestimony" component="input" type='checkbox'/>
-          <label>If your application is accepted, and Offer1 savaes you time and money, while better serving your client, will you provide us a video testimony?</label>
+          <label>If your application is accepted, and Offer1 saves you time and money while better serving your client, will you provide us a video testimony?</label>
         </div>
 
         <div className="ui checkbox survey-question">
           <Field name="certifyTrue" component="input" type='checkbox' validate={checked} />
-          <label>I certify all of my above answers to be accurate and true to the best of my knowledge.</label>
+          <label>* I certify all of my above answers to be accurate and true to the best of my knowledge.</label>
         </div>
 
-        <div className="ui checkbox survey-question">
+        <div className="ui checkbox final-survey-question">
           <Field name="provideMls" component="input" type='checkbox' validate={checked} />
-          <label><strong>I agree to provide a copy of my MLS YTD production report upon request</strong></label>
+          <label><strong>* I agree to provide a copy of my MLS YTD production report upon request</strong></label>
         </div>
       </div>
+      <p>* Required</p>
         <Link to="/page5">
-          <Button color="green" floated="right"
-            className={invalid ? 'disabled' : ''}>Next</Button>
+          <button className={`ui right floated button
+            ${invalid ? 'disabled' : 'green'}`}>Next</button>
         </Link>
 
         <Link to="/page3">

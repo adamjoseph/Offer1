@@ -6,7 +6,7 @@ import { reduxForm, reset } from 'redux-form';
 import { dispatch } from 'redux';
 
 //import components
-import PreviousInputs from '../form_fields/previous_inputs';
+import PreviousInputs from '../fields/previous_inputs';
 
 class Page5 extends Component {
 
@@ -38,9 +38,9 @@ class Page5 extends Component {
         <PreviousInputs />
         <h3 className='ui header center aligned'>Agents selected to participate in a rollout will be grandfathered into our lowest pricing</h3>
         <h4 className='ui header center aligned'>If your application is accepted you will receive the following</h4>
-        <div className="ui three column grid">
+        <div className="ui stackable three column grid">
           <div className="column">
-            <div className="ui segment">
+            <div className="ui segment page5-btm-segment">
             <ul className='ui list'>
               <li>Seller Registration</li>
               <li>List Presentation Materials</li>
@@ -52,8 +52,6 @@ class Page5 extends Component {
               <li>Email Offer Notification</li>
               <li>Offer comparison tool</li>
               <li>Offer Validation</li>
-              <br/>
-              <br/>
             </ul>
           </div>
           </div>
@@ -76,7 +74,7 @@ class Page5 extends Component {
           </div>
           </div>
           <div className="column">
-            <div className="ui segment">
+            <div className="ui segment page5-btm-segment">
             <ul className='ui list'>
               <li>UNLIMITED MONTHLY TRANSACTIONS</li>
               <li>Transaction History</li>
@@ -87,16 +85,15 @@ class Page5 extends Component {
               <li>Market Data Access</li>
               <li>Eligibility to Platinum and Ambassador programs</li>
               <li>Team data history</li>
-              <br/>
             </ul>
           </div>
           </div>
         </div>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Button color="green" type="submit" floated="right"
-            className={pristine ? 'disabled' : ''}>Finish</Button>
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="page-btn">
+          <button type="submit" className={`ui right floated button
+            ${pristine ? 'disabled' : 'green'}`}>Finish</button>
           <Link to="/page4">
-            <Button color="red" floated="right" className="page-btn">Back</Button>
+            <Button color="red" floated="right">Back</Button>
           </Link>
         </form>
       </div>

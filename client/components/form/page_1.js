@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import { Form, Button } from 'semantic-ui-react';
 
 //components
-import renderField from '../form_fields/render_field';
+import renderField from '../fields/render_field';
 
 //validation constants
 const required = value => value ? undefined : 'Required';
@@ -47,8 +47,8 @@ class Page1 extends Component {
           </div>
           <div className="page-btn">
             <Link to="/page2" >
-              <Button color="green" floated="right"
-                className={invalid ? 'disabled' : ''}>Next</Button>
+              <button
+                className={`ui right floated button ${invalid ? 'disabled' : 'green'}`}>Next</button>
             </Link>
           </div>
         </div>

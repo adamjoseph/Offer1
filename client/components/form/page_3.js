@@ -4,10 +4,10 @@ import { Link } from 'react-router';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 
-import StateSelect from '../form_fields/state_select';
-import TeamSelect from '../form_fields/team_select';
-import renderField from '../form_fields/render_field';
-import labeledField from '../form_fields/labeled_field';
+import StateSelect from '../fields/state_select';
+import TeamSelect from '../fields/team_select';
+import renderField from '../fields/render_field';
+import labeledField from '../fields/labeled_field';
 
 const selector = formValueSelector('Application');
 
@@ -81,8 +81,8 @@ class Page3 extends Component {
             : <div></div>}
           {/* end conditional inputs */}
           <Link to="/page4">
-            <Button color="green" floated="right"
-              className={invalid ? 'disabled' : ''}>Next</Button>
+          <button className={`ui right floated button
+            ${invalid ? 'disabled' : 'green'}`}>Next</button>
           </Link>
 
           <Link to="/page2">

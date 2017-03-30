@@ -5,7 +5,7 @@ class Login extends Component {
   render() {
     return (
       <div className="link item">
-      <Link to='/' > Login </Link>
+      <Link to='/' > Sign In </Link>
       </div>
     );
   }

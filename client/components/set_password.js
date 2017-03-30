@@ -3,7 +3,7 @@ import { Link, browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
 import { Accounts } from 'meteor/accounts-base';
 
-import signInField from './sign_in_field';
+import signInField from './fields/sign_in_field';
 
 const required = value => value ? undefined : 'Required';
 
@@ -32,7 +32,7 @@ class SetPassword extends Component {
             </div>
             <div className="field">
               <button type="submit"
-                className={invalid ? 'ui button disabled large fluid green' : 'ui button large fluid green'} >Set Password</button>
+                className={`ui button large fluid ${invalid ? 'disabled' : 'green'}`} >Set Password</button>
             </div>
             </form>
           </div>

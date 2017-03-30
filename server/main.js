@@ -1,9 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Email } from 'meteor/email';
 import { check, Match } from 'meteor/check';
-//import { WebApp } from 'meteor/webapp';
-//import _ from 'lodash';
-//import faker from 'faker';
+
+import mailUrl from './config';
 
 
 import  { Agents } from '../imports/collections/agents';
@@ -14,8 +13,8 @@ import { Accounts } from 'meteor/accounts-base';
 
 Meteor.startup(() => {
   // code to run on server at startup
-  process.env.MAIL_URL =
-  'smtp://postmaster@sandbox7c366020d39945438730120b142279be.mailgun.org:c12d5c0229553d4263e8ddde0a4f7a7a@smtp.mailgun.org:184.173.153.200';
+  process.env.MAIL_URL = mailUrl.mailUrl;
+
 
   //send daily email to admin w/number of applicants
   // Meteor.setInterval(() => {

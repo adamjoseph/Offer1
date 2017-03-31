@@ -10,17 +10,16 @@ import AgentSearch from './agent_search';
 
 //set initial values for Reactive variables
 const searcher = new ReactiveVar({'reviewed': false});
-const agentCount = new ReactiveVar(500);
+const agentCount = new ReactiveVar(300);
+const sortOrder = new ReactiveVar(1);
 
 class AdminPage extends Component {
   componentDidMount() {
     //check if admin is logged in, redirect otherwise
-     Meteor.setInterval(() => {
-       this.props.isAdmin ? '': browserHistory.push('/');
-     }, 5000)
+    this.props.isAdmin ? '' : browserHistory.push('/');
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(timer) {
     // stop subscription when admin leaves page
     this.props.subscription.stop();
   }
@@ -42,6 +41,12 @@ class AdminPage extends Component {
      searcher.set({ 'reviewed': false });
    }
 
+   switchSortOrder() {
+     sortOrder.set(
+       sortOrder.get() * -1
+     )
+   }
+
    loadMore() {
      agentCount.set(
        agentCount.get() + 50
@@ -59,6 +64,8 @@ class AdminPage extends Component {
         <h1 className="ui dividing header center aligned">Administration Home</h1>
         <AgentSearch
           upperSearch={this.agentFilter.bind(this)} clearData={this.clearSearchFilter.bind(this)}
+          switchSortOrder={this.switchSortOrder.bind(this)}
+          sortStatus={sortOrder.get()}
         />
         <div className="ui grid">
           <div className="five wide column">
@@ -81,8 +88,9 @@ export default createContainer(() => {
  //set up subscription
  const subscription = Meteor.subscribe('agents', agentCount.get());
  const loading = !subscription.ready();
- const agents = Agents.find(searcher.get()).fetch();
- const isAdmin = Roles.userIsInRole( Meteor.userId(), 'admin' );
+ const agents = Agents.find(searcher.get(), {sort: {'createdAt': sortOrder.get()}}).fetch();
+ const isAdmin = Roles.userIsInRole( Meteor.userId(), 'admin');
+
  //return subsciption data to props
  return { agents, loading, subscription, isAdmin };
 }, AdminPage);

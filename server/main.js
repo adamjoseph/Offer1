@@ -153,7 +153,7 @@ Meteor.methods({
 Meteor.publish('agents', function(agent_cap) {
   check(agent_cap, Number);
   if (Roles.userIsInRole( this.userId, 'admin' )){
-    return Agents.find({}, { limit: agent_cap })
+    return Agents.find({}, { limit: agent_cap }, {sort: {'agent.fname': -1}})
   } else {
     this.stop();
     return

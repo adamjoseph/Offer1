@@ -101,5 +101,5 @@ class Page5 extends Component {
 
 export default reduxForm({
   form: 'Application',
-  destroyOnUnmount: false
+  destroyOnUnmount: true
 })(Page5)

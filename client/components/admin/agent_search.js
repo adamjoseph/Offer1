@@ -26,6 +26,10 @@ class AgentSearch extends Component {
     this.props.dispatch(clearAgent());
   }
 
+  switchSortOrder() {
+    this.props.switchSortOrder();
+  }
+
   render() {
     const { handleSubmit } = this.props
     return (
@@ -47,6 +51,12 @@ class AgentSearch extends Component {
           </div>
           <div className="field">
             <button type="submit" className="ui blue button">Search</button>
+          </div>
+          <div className="field">
+            <button type="button" className="ui blue button"
+              onClick={() => this.switchSortOrder()}>
+              {this.props.sortStatus === 1 ? "Newest" : "Oldest"}
+            </button>
           </div>
           <div className="field">
             <button type="button" className="ui blue button"

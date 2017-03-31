@@ -22,6 +22,9 @@ class NavBar extends Component {
         <Link to="/register-basic-info" className="link item">
           <div>Agent Application</div>
         </Link>
+        {this.props.isAdmin ? <Link to="/admin" className="link item">
+          <div>Admin Home</div>
+        </Link> : ''}
         <div className="right menu" >
           {this.props.userId ? <Logout /> : <Login />}
         </div>
@@ -33,6 +36,7 @@ class NavBar extends Component {
 //get UserId to chage Login => Logout
 export default createContainer(() => {
   const userId = Meteor.userId();
+  const isAdmin = Roles.userIsInRole( Meteor.userId(), 'admin' );
 
-  return { userId };
+  return { userId, isAdmin };
 }, NavBar);

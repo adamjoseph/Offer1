@@ -11,9 +11,13 @@ class SetPassword extends Component {
   onSubmit(props){
     const token = this.props.params.token;
     const newPassword = props.password;
-    Accounts.resetPassword(token, newPassword, function(){
-      Bert.alert('Password Set', 'success', 'growl-top-right');
-      browserHistory.push('/');
+    Accounts.resetPassword(token, newPassword, function(error){
+      if(error){
+        Bert.alert(error.reason, 'danger', 'growl-top-right');
+      } else {
+        Bert.alert('Password Set', 'success', 'growl-top-right');
+        browserHistory.push('/');
+      }
     })
   }
 
